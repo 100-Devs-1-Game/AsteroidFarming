@@ -1,0 +1,8 @@
+- decide between 3D and isometric 2D
+- figure out how Godot 3D works if 3D
+- make some placeholder assets
+- make game mechanics (based on my old game's mechanics)
+- add menus, options, etc.
+- replace placeholder assets
+- ???
+- not profit, because this is a hobby project
