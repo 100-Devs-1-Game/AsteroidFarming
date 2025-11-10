@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=29 format=3 uid="uid://dj2gwxmun3byt"]
+[gd_resource type="MeshLibrary" load_steps=36 format=3 uid="uid://dj2gwxmun3byt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j40u"]
 albedo_color = Color(0.5, 0.5, 0.5, 1)
@@ -18,6 +18,9 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_ssaar"]
 image = SubResource("Image_gupbg")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2j40u"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od8sr"]
 albedo_color = Color(0.34, 0.153, 0, 1)
 
@@ -35,6 +38,9 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_qcob1"]
 image = SubResource("Image_gncyg")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1g8qg"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhpg2"]
 albedo_color = Color(0.0413105, 0, 0.906735, 1)
@@ -55,6 +61,9 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_bmtx5"]
 image = SubResource("Image_ssaar")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_od8sr"]
+data = PackedVector3Array(-0.5, 0.4, 0.5, 0.5, 0.4, 0.5, -0.5, -0.4, 0.5, 0.5, 0.4, 0.5, 0.5, -0.4, 0.5, -0.5, -0.4, 0.5, 0.5, 0.4, -0.5, -0.5, 0.4, -0.5, 0.5, -0.4, -0.5, -0.5, 0.4, -0.5, -0.5, -0.4, -0.5, 0.5, -0.4, -0.5, 0.5, 0.4, 0.5, 0.5, 0.4, -0.5, 0.5, -0.4, 0.5, 0.5, 0.4, -0.5, 0.5, -0.4, -0.5, 0.5, -0.4, 0.5, -0.5, 0.4, -0.5, -0.5, 0.4, 0.5, -0.5, -0.4, -0.5, -0.5, 0.4, 0.5, -0.5, -0.4, 0.5, -0.5, -0.4, -0.5, 0.5, 0.4, 0.5, -0.5, 0.4, 0.5, 0.5, 0.4, -0.5, -0.5, 0.4, 0.5, -0.5, 0.4, -0.5, 0.5, 0.4, -0.5, -0.5, -0.4, 0.5, 0.5, -0.4, 0.5, -0.5, -0.4, -0.5, 0.5, -0.4, 0.5, 0.5, -0.4, -0.5, -0.5, -0.4, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3m0d"]
 albedo_color = Color(0.360784, 0.270588, 0.105882, 1)
 
@@ -72,6 +81,9 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_cxi7j"]
 image = SubResource("Image_mu2p8")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jhpg2"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ykc4"]
 albedo_color = Color(0, 0.557988, 0.27425, 1)
@@ -92,6 +104,9 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_0q1nl"]
 image = SubResource("Image_jtojg")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i3m0d"]
+data = PackedVector3Array(-0.5, 1, 0.5, 0.5, 1, 0.5, -0.5, -1, 0.5, 0.5, 1, 0.5, 0.5, -1, 0.5, -0.5, -1, 0.5, 0.5, 1, -0.5, -0.5, 1, -0.5, 0.5, -1, -0.5, -0.5, 1, -0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, 0.5, 1, 0.5, 0.5, 1, -0.5, 0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, -1, -0.5, -0.5, 1, 0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, 1, -0.5, 0.5, 1, -0.5, -0.5, -1, 0.5, 0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1tb5"]
 albedo_color = Color(0.349062, 0.282882, 0, 1)
 
@@ -111,6 +126,9 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_15v0n"]
 image = SubResource("Image_qcob1")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p5lnq"]
+data = PackedVector3Array(-0.55, 1.5, 0.55, 0.55, 1.5, 0.55, -0.55, -1.5, 0.55, 0.55, 1.5, 0.55, 0.55, -1.5, 0.55, -0.55, -1.5, 0.55, 0.55, 1.5, -0.55, -0.55, 1.5, -0.55, 0.55, -1.5, -0.55, -0.55, 1.5, -0.55, -0.55, -1.5, -0.55, 0.55, -1.5, -0.55, 0.55, 1.5, 0.55, 0.55, 1.5, -0.55, 0.55, -1.5, 0.55, 0.55, 1.5, -0.55, 0.55, -1.5, -0.55, 0.55, -1.5, 0.55, -0.55, 1.5, -0.55, -0.55, 1.5, 0.55, -0.55, -1.5, -0.55, -0.55, 1.5, 0.55, -0.55, -1.5, 0.55, -0.55, -1.5, -0.55, 0.55, 1.5, 0.55, -0.55, 1.5, 0.55, 0.55, 1.5, -0.55, -0.55, 1.5, 0.55, -0.55, 1.5, -0.55, 0.55, 1.5, -0.55, -0.55, -1.5, 0.55, 0.55, -1.5, 0.55, -0.55, -1.5, -0.55, 0.55, -1.5, 0.55, 0.55, -1.5, -0.55, -0.55, -1.5, -0.55)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2twt"]
 albedo_color = Color(0.45, 0, 0, 1)
 
@@ -129,12 +147,15 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_rlvpx"]
 image = SubResource("Image_auhr7")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ddpu7"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [resource]
 item/0/name = "base"
 item/0/mesh = SubResource("BoxMesh_gupbg")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
-item/0/shapes = []
+item/0/shapes = [SubResource("ConcavePolygonShape3D_2j40u"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_ssaar")
@@ -142,7 +163,7 @@ item/1/name = "dirt"
 item/1/mesh = SubResource("BoxMesh_mu2p8")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
-item/1/shapes = []
+item/1/shapes = [SubResource("ConcavePolygonShape3D_1g8qg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
 item/1/preview = SubResource("ImageTexture_qcob1")
@@ -150,7 +171,7 @@ item/2/name = "water"
 item/2/mesh = SubResource("BoxMesh_auhr7")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/mesh_cast_shadow = 1
-item/2/shapes = []
+item/2/shapes = [SubResource("ConcavePolygonShape3D_od8sr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
 item/2/preview = SubResource("ImageTexture_bmtx5")
@@ -158,7 +179,7 @@ item/3/name = "soil"
 item/3/mesh = SubResource("BoxMesh_u2i5t")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
-item/3/shapes = []
+item/3/shapes = [SubResource("ConcavePolygonShape3D_jhpg2"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
 item/3/preview = SubResource("ImageTexture_cxi7j")
@@ -166,7 +187,7 @@ item/4/name = "wheat start"
 item/4/mesh = SubResource("BoxMesh_rwl44")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/mesh_cast_shadow = 1
-item/4/shapes = []
+item/4/shapes = [SubResource("ConcavePolygonShape3D_i3m0d"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_0q1nl")
@@ -174,7 +195,7 @@ item/5/name = "wheat end"
 item/5/mesh = SubResource("BoxMesh_vwa7p")
 item/5/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/5/mesh_cast_shadow = 1
-item/5/shapes = []
+item/5/shapes = [SubResource("ConcavePolygonShape3D_p5lnq"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/5/navigation_layers = 1
 item/5/preview = SubResource("ImageTexture_15v0n")
@@ -182,7 +203,7 @@ item/6/name = "virus"
 item/6/mesh = SubResource("BoxMesh_g80wo")
 item/6/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/6/mesh_cast_shadow = 1
-item/6/shapes = []
+item/6/shapes = [SubResource("ConcavePolygonShape3D_ddpu7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/6/navigation_layers = 1
 item/6/preview = SubResource("ImageTexture_rlvpx")
