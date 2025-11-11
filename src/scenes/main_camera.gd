@@ -4,7 +4,7 @@ class_name MainCamera extends Camera3D
 @export var move_speed:=5.0
 @export var rotate_speed:=1.0
 @export var farm:Farm
-@onready var test: MeshInstance3D = $"../test"
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 const RAYLEN:=10000
 const EPSILON:=0.1
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		move(delta)
-	interact()
+		interact()
 	
 func move(delta: float):
 	var base_direction:=Input.get_vector("move_left","move_right","move_forward","move_back")
@@ -35,19 +35,25 @@ func move(delta: float):
 	rotate_y(turn_direction*delta*rotate_speed)
 
 func interact():
-	var rq:=PhysicsRayQueryParameters3D.new()
 	var mouse_pos:=get_viewport().get_mouse_position()
-	print(mouse_pos)
-	rq.from=project_ray_origin(mouse_pos)
-	var normal:=project_local_ray_normal(mouse_pos)
-	rq.to=rq.from+normal*RAYLEN
+	var from:=project_ray_origin(mouse_pos)
+	var normal:=project_ray_normal(mouse_pos)
+	var to:=from+normal*RAYLEN
+	var rq:=PhysicsRayQueryParameters3D.new()
+	rq.from=from
+	rq.to=to
 	var space:=get_world_3d().direct_space_state
 	var ray_res:=space.intersect_ray(rq)
 	if ray_res.is_empty():
 		return
 	var ray_pos:Vector3=ray_res["position"]
 	ray_pos+=normal*EPSILON
-	test.position=ray_pos+Vector3.UP*1
+	ray_pos.y=0
 	var abs_pos:=farm.local_to_map(farm.to_local(ray_pos))
-	print(ray_pos,abs_pos)
-	# farm.set_cell_item(abs_pos,0)
+	assert(abs_pos.y==0)
+	var is_clicked:=Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	# print(ray_pos,abs_pos)
+	for coords in farm.get_used_cells():
+		if coords.y!=0:
+			farm.set_cell_item(coords,-1)
+	farm.interact(ray_pos,is_clicked)
