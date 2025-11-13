@@ -1,8 +1,9 @@
 class_name Farm extends GridMap
 
-
 var cur_coords:=Vector3i.UP*9001
 var cur_stored:bool=false
+var _element_dict:Dictionary[int,FarmElement]
+var tool:int=-1
 
 @export var true_gridmap:GridMap
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,10 @@ func _ready() -> void:
 		var value:=true_gridmap.get_cell_item(coords)
 		var orientation:=true_gridmap.get_cell_item_orientation(coords)
 		self.set_cell_item(coords,value,orientation)
+	for child in self.get_children():
+		if is_instance_of(child,FarmElement):
+			var el:FarmElement=child
+			self._element_dict[el.type]=el
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,4 +52,10 @@ func toggle_hide():
 	cur_stored=not cur_stored
 
 func determine_change(cell:Vector3i)->int:
-	return 1
+	var cur:=true_gridmap.get_cell_item(cell)
+	if cur not in self._element_dict:
+		return cur
+	var element:FarmElement=self._element_dict.get(cur)
+	var res:int=element.manual_change(FarmConstants.TOOL.NOTHING)
+	print(cur,res)
+	return res
