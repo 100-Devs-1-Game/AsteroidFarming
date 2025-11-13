@@ -2,10 +2,20 @@ class_name Farm extends GridMap
 
 
 var cur_coords:=Vector3i.UP*9001
-var cur_stored:=-1
+var cur_stored:bool=false
+
+@export var true_gridmap:GridMap
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if not true_gridmap:
+		true_gridmap=$TrueGridMap
+	assert(true_gridmap)
+	true_gridmap.hide()
+	self.clear()
+	for coords in true_gridmap.get_used_cells():
+		var value:=true_gridmap.get_cell_item(coords)
+		var orientation:=true_gridmap.get_cell_item_orientation(coords)
+		self.set_cell_item(coords,value,orientation)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,20 +24,27 @@ func _process(delta: float) -> void:
 
 func interact(position:Vector3,click:bool):
 	var cell_coords:=self.local_to_map(self.to_local(position))
-	var cell_value:=self.get_cell_item(cell_coords)
+	var cell_value:=true_gridmap.get_cell_item(cell_coords)
 	if click:
-		pass
+		var change=determine_change(cur_coords)
+		self.true_gridmap.set_cell_item(cur_coords,change)
+		toggle_hide()
+		toggle_hide()
 	else:
-		if cur_stored!=-1 and cell_coords!=cur_coords:
+		if cur_stored and cell_coords!=cur_coords:
 			toggle_hide()
 			cur_coords=cell_coords
 			toggle_hide()
 		cur_coords=cell_coords
 
 func toggle_hide():
-	if cur_stored==-1:
-		cur_stored=self.get_cell_item(cur_coords)
-		self.set_cell_item(cur_coords,-1)
-		return
-	self.set_cell_item(cur_coords,cur_stored)
-	cur_stored=-1
+	var change:int=-1
+	if cur_stored:
+		change=true_gridmap.get_cell_item(cur_coords)
+	else:
+		change=determine_change(cur_coords)
+	self.set_cell_item(cur_coords,change)
+	cur_stored=not cur_stored
+
+func determine_change(cell:Vector3i)->int:
+	return 1
