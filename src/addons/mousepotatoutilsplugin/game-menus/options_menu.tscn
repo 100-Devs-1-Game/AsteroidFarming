@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfw84xjyjt6po"]
+
+[ext_resource type="Script" uid="uid://bhpoja4ylbqyc" path="res://addons/mousepotatoutilsplugin/swappable-menus/swappable_menu.gd" id="1_p2i8m"]
+[ext_resource type="Script" uid="uid://dkjkhgcpktxfc" path="res://addons/mousepotatoutilsplugin/game-menus/input_keybind_list.gd" id="2_82hia"]
+[ext_resource type="PackedScene" uid="uid://btmfln5l5eqmx" path="res://addons/mousepotatoutilsplugin/game-menus/keybinds/multiple_input_keybind.tscn" id="4_p8err"]
+
+[node name="Options Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p2i8m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30875
+anchor_top = 0.0666667
+anchor_right = 0.96375
+anchor_bottom = 0.931667
+metadata/_edit_use_anchors_ = true
+
+[node name="Input Keybind List" type="VBoxContainer" parent="Control/ScrollContainer" node_paths=PackedStringArray("element")]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+script = ExtResource("2_82hia")
+element = NodePath("../../Multiple Input Keybind")
+metadata/_edit_use_anchors_ = true
+
+[node name="Multiple Input Keybind" parent="Control" instance=ExtResource("4_p8err")]
+visible = false
+layout_mode = 1
+anchor_left = 0.45125
+anchor_top = 0.113333
+anchor_right = 0.85125
+anchor_bottom = 0.446667
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0355903
+anchor_top = 0.066358
+anchor_right = 0.243056
+anchor_bottom = 0.192901
+text = "Return
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Return" to="." method="close"]

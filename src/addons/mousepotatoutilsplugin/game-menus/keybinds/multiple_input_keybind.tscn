@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://btmfln5l5eqmx"]
+
+[ext_resource type="Script" uid="uid://cyuclmw4b3ane" path="res://addons/mousepotatoutilsplugin/game-menus/keybinds/multiple_input_keybind.gd" id="1_24se2"]
+[ext_resource type="Script" uid="uid://cxg6gyrhesb1j" path="res://addons/mousepotatoutilsplugin/menu-elements/mpup_ui_button_list.gd" id="2_24se2"]
+
+[node name="Multiple Input Keybind" type="Control" node_paths=PackedStringArray("name_t", "existing", "new_role")]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 3
+anchor_right = 0.4
+anchor_bottom = 0.333333
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_24se2")
+name_t = NodePath("HB/NameHolder/ColorRect/Name")
+existing = NodePath("HB/ScrollContainer/VBoxContainer/MPUP UI Button List")
+new_role = NodePath("HB/ScrollContainer/VBoxContainer/New")
+metadata/_edit_use_anchors_ = true
+
+[node name="HB" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameHolder" type="Control" parent="HB"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HB/NameHolder"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.62526, 0.51321, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="RichTextLabel" parent="HB/NameHolder/ColorRect"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HB"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HB/ScrollContainer"]
+layout_mode = 2
+
+[node name="MPUP UI Button List" type="VBoxContainer" parent="HB/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_24se2")
+debug = false
+
+[node name="New" type="Button" parent="HB/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+text = "Test"
+
+[connection signal="clicked" from="HB/ScrollContainer/VBoxContainer/MPUP UI Button List" to="." method="remove_button"]
+[connection signal="resized" from="HB/ScrollContainer/VBoxContainer/MPUP UI Button List" to="HB/ScrollContainer/VBoxContainer/MPUP UI Button List" method="onresize"]
+[connection signal="pressed" from="HB/ScrollContainer/VBoxContainer/New" to="." method="on_button_press"]

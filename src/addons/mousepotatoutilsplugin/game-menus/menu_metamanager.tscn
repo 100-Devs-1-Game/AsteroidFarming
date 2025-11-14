@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm0jaq8scqg0h"]
+
+[ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_vguvw"]
+[ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_2lp7o"]
+[ext_resource type="PackedScene" uid="uid://b56dv6vxd7d8f" path="res://addons/mousepotatoutilsplugin/game-menus/main_menu.tscn" id="2_k4jju"]
+[ext_resource type="Script" uid="uid://bhpoja4ylbqyc" path="res://addons/mousepotatoutilsplugin/swappable-menus/swappable_menu.gd" id="3_2lp7o"]
+[ext_resource type="PackedScene" uid="uid://cfw84xjyjt6po" path="res://addons/mousepotatoutilsplugin/game-menus/options_menu.tscn" id="4_b1rt8"]
+[ext_resource type="Script" uid="uid://db14k63p1wo06" path="res://addons/mousepotatoutilsplugin/game-menus/quick_menu.gd" id="6_3xwlf"]
+[ext_resource type="Script" uid="uid://ehpf887gnpi5" path="res://addons/mousepotatoutilsplugin/game-menus/minigame_manager.gd" id="7_b1rt8"]
+
+[node name="Menu Metamanager" type="Control" node_paths=PackedStringArray("cur_menu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vguvw")
+cur_menu = NodePath("Game Manager")
+
+[node name="Game Manager" type="Control" parent="." node_paths=PackedStringArray("minigame_test", "cur_menu", "quick_menu")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2lp7o")
+minigame_test = NodePath("../Minigame Manager")
+cur_menu = NodePath("Main Menu")
+quick_menu = NodePath("Quick Menu")
+
+[node name="Main Menu" parent="Game Manager" node_paths=PackedStringArray("options_menu") instance=ExtResource("2_k4jju")]
+visible = false
+layout_mode = 1
+options_menu = NodePath("../Options Menu")
+
+[node name="Options Menu" parent="Game Manager" instance=ExtResource("4_b1rt8")]
+layout_mode = 1
+
+[node name="Quick Menu" type="Control" parent="Game Manager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_3xwlf")
+
+[node name="Return" type="Button" parent="Game Manager/Quick Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00875
+anchor_top = 0.0183333
+anchor_right = 0.16625
+anchor_bottom = 0.0933333
+text = "Return to menu
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Minigame Manager" type="Control" parent="." node_paths=PackedStringArray("cur_menu", "quick_menu")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_b1rt8")
+cur_menu = NodePath("Main Menu")
+quick_menu = NodePath("Quick Menu")
+
+[node name="Main Menu" parent="Minigame Manager" node_paths=PackedStringArray("options_menu") instance=ExtResource("2_k4jju")]
+layout_mode = 1
+is_minigame = true
+options_menu = NodePath("../Options")
+
+[node name="Options" type="Control" parent="Minigame Manager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_2lp7o")
+
+[node name="Button" type="Button" parent="Minigame Manager/Options"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.415799
+anchor_top = 0.523148
+anchor_right = 0.913194
+anchor_bottom = 0.885802
+text = "Swap menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quick Menu" type="Control" parent="Minigame Manager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_3xwlf")
+
+[node name="Return" type="Button" parent="Minigame Manager/Quick Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00875
+anchor_top = 0.0183333
+anchor_right = 0.16625
+anchor_bottom = 0.0933333
+text = "Return to menu
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="sig_minigame" from="Game Manager/Main Menu" to="Game Manager" method="open_minigame_menu"]
+[connection signal="pressed" from="Game Manager/Quick Menu/Return" to="Game Manager/Quick Menu" method="close"]
+[connection signal="pressed" from="Minigame Manager/Options/Button" to="Minigame Manager/Options" method="close"]
+[connection signal="pressed" from="Minigame Manager/Quick Menu/Return" to="Minigame Manager/Quick Menu" method="close"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://b56dv6vxd7d8f"]
+
+[ext_resource type="Script" uid="uid://dgvrgqnj4bbmn" path="res://addons/mousepotatoutilsplugin/game-menus/any_main_menu.gd" id="1_v6604"]
+
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("options_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6604")
+options_button = NodePath("VBoxContainer/Options")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.319444
+anchor_top = 0.330247
+anchor_right = 0.697917
+anchor_bottom = 0.975309
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="Minigame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Minigame"
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Return"
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit All" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit Game
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Minigame" to="." method="_on_minigame_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit All" to="." method="exit_game"]

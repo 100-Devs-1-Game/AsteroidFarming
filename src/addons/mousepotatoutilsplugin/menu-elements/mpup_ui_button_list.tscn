@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmkped7cabdjo"]
+
+[ext_resource type="Script" uid="uid://cxg6gyrhesb1j" path="res://addons/mousepotatoutilsplugin/menu-elements/mpup_ui_button_list.gd" id="1_5nvqk"]
+
+[node name="MPUP UI Button List" type="BoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5nvqk")
+
+[connection signal="resized" from="." to="." method="onresize"]

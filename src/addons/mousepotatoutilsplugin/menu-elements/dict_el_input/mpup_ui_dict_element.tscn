@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://xr8lbkoncoqk"]
+
+[ext_resource type="Script" uid="uid://cvhlibv4qjxhb" path="res://addons/mousepotatoutilsplugin/menu-elements/dict_el_input/mpup_ui_dict_element.gd" id="1_6gq3i"]
+
+[node name="MPUP UI DictElement" type="HBoxContainer" node_paths=PackedStringArray("name_node", "value_node")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -636.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gq3i")
+name_node = NodePath("Name")
+value_node = NodePath("Value")
+
+[node name="Name" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Test name here"
+placeholder_text = "Key"
+
+[node name="Value" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Value"
+
+[node name="Erase" type="Button" parent="."]
+layout_mode = 2
+text = "Erase"
+
+[connection signal="resized" from="." to="." method="onresize"]

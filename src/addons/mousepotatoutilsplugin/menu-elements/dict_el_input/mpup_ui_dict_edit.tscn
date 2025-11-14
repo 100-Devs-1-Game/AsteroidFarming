@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://lodocm4abmtt"]
+
+[ext_resource type="Script" uid="uid://be2d27k6p6b4v" path="res://addons/mousepotatoutilsplugin/menu-elements/dict_el_input/mpup_ui_dict_edit.gd" id="1_t3hsm"]
+[ext_resource type="Script" uid="uid://cxg6gyrhesb1j" path="res://addons/mousepotatoutilsplugin/menu-elements/mpup_ui_button_list.gd" id="2_kcv02"]
+
+[node name="MPUP UI Dict Edit" type="Control" node_paths=PackedStringArray("keys_display", "key_edit", "value_edit", "do_auto_update", "do_move_value")]
+layout_mode = 3
+anchor_right = 0.434028
+anchor_bottom = 0.524691
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t3hsm")
+keys_display = NodePath("Control/ScrollContainer/MPUP UI Button List")
+key_edit = NodePath("VBoxContainer/Key")
+value_edit = NodePath("VBoxContainer/Value")
+do_auto_update = NodePath("VBoxContainer/AutoUpdate")
+do_move_value = NodePath("VBoxContainer/MoveValue")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.046
+anchor_top = 0.0516667
+anchor_right = 0.446
+anchor_bottom = 0.938333
+offset_right = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MPUP UI Button List" type="VBoxContainer" parent="Control/ScrollContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+script = ExtResource("2_kcv02")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.486
+anchor_top = 0.0583333
+anchor_right = 0.934
+anchor_bottom = 0.94
+metadata/_edit_use_anchors_ = true
+
+[node name="Key" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Key..."
+
+[node name="Value" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Value..."
+
+[node name="AutoUpdate" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Auto-update value"
+
+[node name="MoveValue" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Move value with key"
+
+[node name="Update" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Update"
+
+[node name="Remove" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Remove"
+
+[connection signal="clicked" from="Control/ScrollContainer/MPUP UI Button List" to="." method="read"]
+[connection signal="resized" from="Control/ScrollContainer/MPUP UI Button List" to="Control/ScrollContainer/MPUP UI Button List" method="onresize"]
+[connection signal="text_changed" from="VBoxContainer/Value" to="." method="auto_update"]
+[connection signal="pressed" from="VBoxContainer/Update" to="." method="update"]
+[connection signal="pressed" from="VBoxContainer/Remove" to="." method="remove"]

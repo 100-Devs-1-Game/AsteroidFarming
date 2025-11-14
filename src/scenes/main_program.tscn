@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqd5h1sjm4wig"]
+
+[ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_hoxkb"]
+[ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
+[ext_resource type="PackedScene" uid="uid://c6opgwwqcyu8k" path="res://scenes/main_node.tscn" id="3_hw0gc"]
+[ext_resource type="PackedScene" uid="uid://b56dv6vxd7d8f" path="res://addons/mousepotatoutilsplugin/game-menus/main_menu.tscn" id="3_o7yru"]
+[ext_resource type="PackedScene" uid="uid://cfw84xjyjt6po" path="res://addons/mousepotatoutilsplugin/game-menus/options_menu.tscn" id="4_csuw5"]
+[ext_resource type="Script" uid="uid://db14k63p1wo06" path="res://addons/mousepotatoutilsplugin/game-menus/quick_menu.gd" id="5_pyrb7"]
+
+[node name="Main Program" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu Metamanager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("cur_menu", "game_parent_node")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hoxkb")
+cur_menu = NodePath("Game Manager")
+game_parent_node = NodePath("../..")
+
+[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("cur_menu", "quick_menu")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_hw0gc")
+cur_menu = NodePath("Main Menu")
+quick_menu = NodePath("Quick Menu")
+game_scene_template = ExtResource("3_hw0gc")
+
+[node name="Main Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("options_menu") instance=ExtResource("3_o7yru")]
+visible = false
+layout_mode = 1
+options_menu = NodePath("../Options Menu")
+
+[node name="Options Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" instance=ExtResource("4_csuw5")]
+layout_mode = 1
+
+[node name="Quick Menu" type="Control" parent="CanvasLayer/Menu Metamanager/Game Manager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_pyrb7")
+
+[node name="Return" type="Button" parent="CanvasLayer/Menu Metamanager/Game Manager/Quick Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00875
+anchor_top = 0.0183333
+anchor_right = 0.16625
+anchor_bottom = 0.0933333
+text = "Return to menu
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="sig_minigame" from="CanvasLayer/Menu Metamanager/Game Manager/Main Menu" to="CanvasLayer/Menu Metamanager/Game Manager" method="open_minigame_menu"]
+[connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Quick Menu/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Quick Menu" method="close"]

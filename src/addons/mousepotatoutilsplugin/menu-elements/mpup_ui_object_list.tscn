@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfl2d3uao1d4a"]
+
+[ext_resource type="Script" uid="uid://cbdc2r04bx78d" path="res://addons/mousepotatoutilsplugin/menu-elements/mpup_ui_object_list.gd" id="1_b25gd"]
+
+[node name="MPUP UI Object List" type="BoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b25gd")
