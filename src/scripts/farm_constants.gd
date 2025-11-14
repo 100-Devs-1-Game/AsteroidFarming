@@ -1,4 +1,4 @@
-class_name FarmConstants extends Node
+class_name FarmConstants extends Object
 
 
 enum TILE {
@@ -12,5 +12,9 @@ enum TILE {
 }
 
 enum TOOL {
-	NOTHING
+	NOTHING,
+	SHOVEL,
+	BUCKET,
+	HOE,
+	COLLECTOR
 }

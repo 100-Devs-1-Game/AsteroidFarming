@@ -3,7 +3,7 @@ class_name Farm extends GridMap
 var cur_coords:=Vector3i.UP*9001
 var cur_stored:bool=false
 var _element_dict:Dictionary[int,FarmElement]
-var tool:int=-1
+var tool:FarmConstants.TOOL=FarmConstants.TOOL.NOTHING
 
 @export var true_gridmap:GridMap
 # Called when the node enters the scene tree for the first time.
@@ -20,11 +20,17 @@ func _ready() -> void:
 	for child in self.get_children():
 		if is_instance_of(child,FarmElement):
 			var el:FarmElement=child
-			self._element_dict[el.type]=el
+			var el_type:=el.el_type
+			self._element_dict[el.el_type]=el
+	return
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("change_tool"):
+		tool+=1
+		tool%=FarmConstants.TOOL.size()
+		print_debug(tool)
 	pass
 
 func interact(position:Vector3,click:bool):
@@ -56,7 +62,7 @@ func determine_change(cell:Vector3i)->int:
 	if cur not in self._element_dict:
 		return cur
 	var element:FarmElement=self._element_dict.get(cur)
-	var res:int=element.manual_change(FarmConstants.TOOL.NOTHING)
+	var res:int=element.manual_change(self.tool)
 	return res
 
 func get_neighbours(cell:Vector3i,exclude_self:bool=true)->Dictionary[FarmConstants.TILE,int]:
@@ -81,7 +87,9 @@ func determine_autochange(cell:Vector3i)->int:
 		return cur
 	var element:FarmElement=self._element_dict.get(cur)
 	var neigh:=self.get_neighbours(cell)
-	var res:int=element.auto_change(neigh)
+	var res:int=element.auto_change(neigh,element.transitions)
+	if res==cur:
+		return cur # for debugging purposes
 	return res
 
 func set_cell_res(cell:Vector3i,res:int):
@@ -100,7 +108,9 @@ func run_cycle():
 		new=self.determine_autochange(cell)
 		if new!=old:
 			new_ones[cell]=new
-	for cell in new_ones:
-		var new:=new_ones[cell]
-		self.set_cell_res(cell,new)
+	if new_ones:
+		print(new_ones)
+		for cell in new_ones:
+			var new:=new_ones[cell]
+			self.set_cell_res(cell,new)
 	print(len(new_ones))
