@@ -57,5 +57,50 @@ func determine_change(cell:Vector3i)->int:
 		return cur
 	var element:FarmElement=self._element_dict.get(cur)
 	var res:int=element.manual_change(FarmConstants.TOOL.NOTHING)
-	print(cur,res)
 	return res
+
+func get_neighbours(cell:Vector3i,exclude_self:bool=true)->Dictionary[FarmConstants.TILE,int]:
+	var cells:Dictionary[Vector2i,int]={}
+	for i in range(-1,2):
+		for j in range(-1,2):
+			cells[Vector2i(i,j)]=self.get_cell_item(Vector3i(i,0,j))
+	if exclude_self:
+		cells.erase(Vector2i.ZERO)
+	var res:Dictionary[FarmConstants.TILE,int]
+	for key in cells:
+		var value:=cells[key]
+		if value not in range(FarmConstants.TILE.size()):
+			continue
+		res.get_or_add(value,0)
+		res[value]+=1
+	return res
+
+func determine_autochange(cell:Vector3i)->int:
+	var cur:=true_gridmap.get_cell_item(cell)
+	if cur not in self._element_dict:
+		return cur
+	var element:FarmElement=self._element_dict.get(cur)
+	var neigh:=self.get_neighbours(cell)
+	var res:int=element.auto_change(neigh)
+	return res
+
+func set_cell_res(cell:Vector3i,res:int):
+	true_gridmap.set_cell_item(cell,res)
+	if cell==cur_coords:
+		cur_stored=false
+	self.set_cell_item(cell,res)
+
+func run_cycle():
+	var new_ones:Dictionary[Vector3i,int]
+	for cell in self.get_used_cells():
+		var old:=self.get_cell_item(cell)
+		var size:=FarmConstants.TILE.size() 
+		var new:int
+		# new=(abs(cell.x)+abs(cell.y))%size
+		new=self.determine_autochange(cell)
+		if new!=old:
+			new_ones[cell]=new
+	for cell in new_ones:
+		var new:=new_ones[cell]
+		self.set_cell_res(cell,new)
+	print(len(new_ones))

@@ -4,11 +4,11 @@ class_name FarmConstants extends Node
 enum TILE {
 	REGOLITH,
 	DIRT,
-	SOIL,
-	VIRUS,
 	WATER,
+	SOIL,
 	START_WHEAT,
-	END_WHEAT
+	END_WHEAT,
+	VIRUS
 }
 
 enum TOOL {

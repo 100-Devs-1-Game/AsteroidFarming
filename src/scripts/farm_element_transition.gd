@@ -12,6 +12,6 @@ func decide(start:FarmConstants.TILE,relevant_elements:Dictionary[FarmConstants.
 		modifier*=count
 		odds+=modifier
 	var decision:=randf()
-	if decision>odds:
+	if decision<odds:
 		return self.target
 	return base

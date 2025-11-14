@@ -1,10 +1,8 @@
-@tool
 class_name MainCamera extends Camera3D
 
 @export var move_speed:=5.0
 @export var rotate_speed:=1.0
 @export var farm:Farm
-@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 const RAYLEN:=10000
 const EPSILON:=0.1
@@ -16,9 +14,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not Engine.is_editor_hint():
-		move(delta)
-		interact()
+	move(delta)
+	interact()
 	
 func move(delta: float):
 	var base_direction:=Input.get_vector("move_left","move_right","move_forward","move_back")
