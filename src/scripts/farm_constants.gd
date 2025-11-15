@@ -18,3 +18,11 @@ enum TOOL {
 	HOE,
 	COLLECTOR
 }
+
+const TOOL_NAMES:=[
+	"Nothing",
+	"Shovel",
+	"Bucket",
+	"Hoe",
+	"Collector"
+]

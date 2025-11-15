@@ -18,6 +18,10 @@ func _ready() -> void:
 	true_gridmap.hide()
 	_internal_setup()
 
+
+func choose_tool(ind:int):
+	self.tool=ind
+
 func setup(data:Dictionary={}) -> void:
 	select_timer.wait_time=data.get('select_time',select_timer.wait_time)
 	cycle_timer.wait_time=data.get('cycle_time',cycle_timer.wait_time)

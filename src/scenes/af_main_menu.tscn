@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://42c4by184h20" path="res://scenes/af_main_menu.gd" id="1_ocxlu"]
 
 [node name="Main Menu" type="Control" node_paths=PackedStringArray("options_button")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

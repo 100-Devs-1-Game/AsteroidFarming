@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cxgh2n1oayxjt" path="res://scenes/game_menu.gd" id="1_ks0v2"]
 [ext_resource type="Script" uid="uid://bcoel4y5j5jap" path="res://scenes/display_score.gd" id="2_5iet5"]
 
-[node name="Game Menu" type="Control" node_paths=PackedStringArray("score_node")]
+[node name="Game Menu" type="Control" node_paths=PackedStringArray("score_node", "tools")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ks0v2")
 score_node = NodePath("Sidebar/VBoxContainer/DisplayScore")
+tools = NodePath("Sidebar/VBoxContainer/Tools")
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -36,6 +37,22 @@ anchor_right = 0.851064
 anchor_bottom = 0.95216
 metadata/_edit_use_anchors_ = true
 
+[node name="DisplayScore" type="RichTextLabel" parent="Sidebar/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+script = ExtResource("2_5iet5")
+
+[node name="Control" type="Control" parent="Sidebar/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Tools" type="OptionButton" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Sidebar/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
 [node name="End Game" type="Button" parent="Sidebar/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -51,16 +68,8 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Exit to Desktop"
 
-[node name="Control" type="Control" parent="Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="DisplayScore" type="RichTextLabel" parent="Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-script = ExtResource("2_5iet5")
-
 [connection signal="pressed" from="Button" to="." method="interact_with_game"]
+[connection signal="item_selected" from="Sidebar/VBoxContainer/Tools" to="." method="_on_tools_item_selected"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/End Game" to="." method="_on_end_game_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/Exit to Menu" to="." method="_on_exit_to_menu_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/Exit to Desktop" to="." method="_on_exit_to_desktop_pressed"]

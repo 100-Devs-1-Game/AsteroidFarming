@@ -40,7 +40,6 @@ game_scene_template = ExtResource("3_hw0gc")
 scene_parent = NodePath("../../..")
 
 [node name="Main Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("options_menu", "leaderboard_menu", "scene_parent") instance=ExtResource("4_hw0gc")]
-visible = true
 layout_mode = 1
 options_menu = NodePath("../Options Menu")
 leaderboard_menu = NodePath("../Leaderboard Menu")

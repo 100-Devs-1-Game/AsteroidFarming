@@ -1,8 +1,6 @@
 extends Minigame
 
-@onready var main_camera: MainCamera = $"Main Scene/Main Camera"
-
-@onready var grid_map: Farm = $"Main Scene/GridMap"
+@onready var main_scene: AsteroidFarmingMainScene = $"Main Scene"
 
 var score:=0
 var harvested:=0
@@ -14,9 +12,10 @@ var deadline:=-1
 signal sig_change_value(value:Dictionary)
 
 func pass_mouse_input():
-	var mouse_pos:=get_viewport().get_mouse_position()
-	print_debug(mouse_pos)
-	main_camera.interact(mouse_pos,true)
+	main_scene.pass_mouse_input()
+
+func choose_tool(ind:int):
+	main_scene.choose_tool(ind)
 
 func setup_game(data:Dictionary={}):
 	var grid_data:Dictionary=data.get("farm",{})
