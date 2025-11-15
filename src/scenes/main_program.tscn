@@ -97,5 +97,13 @@ text = "Return to menu
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu Metamanager/Game Manager/Score Result"]
+layout_mode = 0
+anchor_left = 0.238715
+anchor_top = 0.401235
+anchor_right = 0.75
+anchor_bottom = 0.70216
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu" method="close"]
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Score Result/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Score Result" method="close"]
