@@ -18,8 +18,5 @@ func decide(start:FarmConstants.TILE,relevant_elements:Dictionary[FarmConstants.
 	odds=min(odds,cap)
 	var decision:=randf()
 	if decision<odds:
-		if start==FarmConstants.TILE.START_WHEAT:
-			print(decision,odds)
-		print(start,self.target,":",decision,"<",odds)
 		return self.target
 	return start

@@ -120,15 +120,14 @@ func play():
 	game.start_game(self.exported_data)
 	game.sig_end.connect(end_game)
 	self.game_parent_node.add_child(game)
-	quick_menu.sig_close.connect(game.end_game)
 
 func before_endgame():
 	return
 
 func end_game(data: Dictionary={}) -> void:
-	print_debug(quick_menu.sig_close.get_connections())
-	quick_menu.sig_close.disconnect(game.end_game)
+	quick_menu.close()
 	exported_data.merge(data,true)
+	print_debug(data)
 	# var score:int=data["score"]
 	# adjust_leaderboard("min_score",false,score)
 	# adjust_leaderboard("max_score",true,score)

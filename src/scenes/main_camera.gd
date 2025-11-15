@@ -58,7 +58,6 @@ func interact(mouse_pos:Vector2,is_clicked:bool=false):
 	var abs_pos:=farm.local_to_map(farm.to_local(ray_pos))
 	assert(abs_pos.y==0)
 	# var is_clicked:=Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	# print(ray_pos,abs_pos)
 	for coords in farm.get_used_cells():
 		if coords.y!=0:
 			farm.set_cell_item(coords,-1)

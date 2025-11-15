@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cyikgmoxhotjh" path="res://scenes/farm.gd" id="3_p3mmm"]
 [ext_resource type="Script" uid="uid://71jxb0tokcx4" path="res://scripts/farm_element.gd" id="4_mbi2d"]
 [ext_resource type="Script" uid="uid://5tnrmukvr7sp" path="res://scripts/farm_element_transition.gd" id="5_81nw7"]
-[ext_resource type="Script" uid="uid://cxgh2n1oayxjt" path="res://scenes/game_menu.gd" id="7_p3mmm"]
+[ext_resource type="PackedScene" uid="uid://608a11f00jrg" path="res://scenes/af_game_menu.tscn" id="7_p3mmm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7ykc4"]
 
@@ -160,31 +160,13 @@ shape = SubResource("BoxShape3D_7ykc4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Game Menu" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_p3mmm")
+[node name="Game Menu" parent="CanvasLayer" instance=ExtResource("7_p3mmm")]
 
-[node name="Button" type="Button" parent="CanvasLayer/Game Menu"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sidebar" type="Panel" parent="CanvasLayer/Game Menu"]
-layout_mode = 0
-anchor_right = 0.203993
-anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
-
+[connection signal="sig_change_value" from="." to="CanvasLayer/Game Menu" method="display_score"]
+[connection signal="sig_harvested" from="Main Scene/GridMap" to="." method="_on_grid_map_sig_harvested"]
+[connection signal="sig_lost" from="Main Scene/GridMap" to="." method="_on_grid_map_sig_lost"]
 [connection signal="timeout" from="Main Scene/GridMap/Select Timer" to="Main Scene/GridMap" method="toggle_hide"]
 [connection signal="timeout" from="Main Scene/GridMap/Cycle Timer" to="Main Scene/GridMap" method="run_cycle"]
+[connection signal="sig_end_game" from="CanvasLayer/Game Menu" to="." method="end_game"]
+[connection signal="sig_exit_to_menu" from="CanvasLayer/Game Menu" to="." method="exit_to_menu"]
 [connection signal="sig_interact" from="CanvasLayer/Game Menu" to="." method="pass_mouse_input"]
-[connection signal="pressed" from="CanvasLayer/Game Menu/Button" to="." method="pass_mouse_input"]

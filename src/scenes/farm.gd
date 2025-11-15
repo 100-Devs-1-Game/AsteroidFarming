@@ -4,14 +4,25 @@ var cur_coords:=Vector3i.UP*9001
 var cur_stored:bool=false
 var _element_dict:Dictionary[int,FarmElement]
 var tool:FarmConstants.TOOL=FarmConstants.TOOL.NOTHING
+@onready var select_timer: Timer = $"Select Timer"
+@onready var cycle_timer: Timer = $"Cycle Timer"
 
 @export var true_gridmap:GridMap
+signal sig_harvested
+signal sig_lost(count:int)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not true_gridmap:
 		true_gridmap=$TrueGridMap
 	assert(true_gridmap)
 	true_gridmap.hide()
+	_internal_setup()
+
+func setup(data:Dictionary={}) -> void:
+	select_timer.wait_time=data.get('select_time',select_timer.wait_time)
+	cycle_timer.wait_time=data.get('cycle_time',cycle_timer.wait_time)
+
+func _internal_setup():
 	self.clear()
 	for coords in true_gridmap.get_used_cells():
 		var value:=true_gridmap.get_cell_item(coords)
@@ -23,14 +34,13 @@ func _ready() -> void:
 			var el_type:=el.el_type
 			self._element_dict[el.el_type]=el
 	return
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("change_tool"):
 		tool+=1
 		tool%=FarmConstants.TOOL.size()
-		print_debug(tool)
 	pass
 
 func interact(position:Vector3,click:bool):
@@ -39,6 +49,8 @@ func interact(position:Vector3,click:bool):
 	if click:
 		var change=determine_change(cur_coords)
 		self.true_gridmap.set_cell_item(cur_coords,change)
+		if cell_value==FarmConstants.TILE.END_WHEAT:
+			sig_harvested.emit()
 		toggle_hide()
 		toggle_hide()
 	else:
@@ -108,9 +120,13 @@ func run_cycle():
 		new=self.determine_autochange(cell)
 		if new!=old:
 			new_ones[cell]=new
-	if new_ones:
-		print(new_ones)
-		for cell in new_ones:
-			var new:=new_ones[cell]
-			self.set_cell_res(cell,new)
-	print(len(new_ones))
+	if not new_ones:
+		return
+	var lost:=0
+	for cell in new_ones:
+		var new:=new_ones[cell]
+		self.set_cell_res(cell,new)
+		if new==FarmConstants.TILE.VIRUS:
+			lost+=1
+	if lost:
+		sig_lost.emit(lost)

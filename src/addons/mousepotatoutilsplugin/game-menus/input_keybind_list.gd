@@ -25,7 +25,6 @@ func get_valid_actions()->Array[StringName]:
 			if act in skipped:
 				continue
 			var searched:=re.search(act)
-			print_debug(act,searched)
 			if searched:
 				skipped[act]=power
 			else:
@@ -102,7 +101,6 @@ func _input(event: InputEvent) -> void:
 	if (not is_valid) and event is InputEventMouseButton:
 		var iemb:InputEventMouseButton
 		iemb=event
-		print_debug(event.as_text(),iemb.pressed)
 		if not iemb.is_pressed():
 			return
 		iemb.double_click=false
