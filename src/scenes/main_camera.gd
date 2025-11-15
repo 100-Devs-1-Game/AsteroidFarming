@@ -15,7 +15,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move(delta)
-	interact()
+	var mouse_pos:=get_viewport().get_mouse_position()
+	interact(mouse_pos)
 	
 func move(delta: float):
 	var base_direction:=Input.get_vector("move_left","move_right","move_forward","move_back")
@@ -31,8 +32,8 @@ func move(delta: float):
 	var turn_direction:=Input.get_axis("spin_left","spin_right")
 	rotate_y(turn_direction*delta*rotate_speed)
 
-func interact():
-	var mouse_pos:=get_viewport().get_mouse_position()
+
+func get_point_coords(mouse_pos:Vector2)->Array[Vector3]:
 	var from:=project_ray_origin(mouse_pos)
 	var normal:=project_ray_normal(mouse_pos)
 	var to:=from+normal*RAYLEN
@@ -42,13 +43,21 @@ func interact():
 	var space:=get_world_3d().direct_space_state
 	var ray_res:=space.intersect_ray(rq)
 	if ray_res.is_empty():
-		return
+		return []
 	var ray_pos:Vector3=ray_res["position"]
 	ray_pos+=normal*EPSILON
 	ray_pos.y=0
+	return [ray_pos]
+	
+
+func interact(mouse_pos:Vector2,is_clicked:bool=false):
+	var test:=get_point_coords(mouse_pos)
+	if test.is_empty():
+		return
+	var ray_pos:Vector3=test[0]
 	var abs_pos:=farm.local_to_map(farm.to_local(ray_pos))
 	assert(abs_pos.y==0)
-	var is_clicked:=Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	# var is_clicked:=Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	# print(ray_pos,abs_pos)
 	for coords in farm.get_used_cells():
 		if coords.y!=0:
