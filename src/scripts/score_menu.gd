@@ -1,10 +1,7 @@
 class_name ScoreMenu extends SwappableMenu
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var display: DisplayScore = $RichTextLabel
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func enter(new_data:Dictionary)->void:
+	self.display.display_score(new_data.get("result",{}))
+	self.show()

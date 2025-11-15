@@ -10,7 +10,8 @@ signal sig_close
 signal sig_setup
 signal sig_play
 
-func enter()->void:
+func enter(new_data:Dictionary)->void:
+	self.exported_data.merge(new_data,true)
 	self.show()
 
 func exit()->void:

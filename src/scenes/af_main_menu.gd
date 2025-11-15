@@ -12,9 +12,6 @@ func _ready() -> void:
 	else:
 		options_button.show()
 
-func enter()->void:
-	self.show()
-
 func _on_options_pressed() -> void:
 	self.sig_swap.emit(options_menu,true)
 

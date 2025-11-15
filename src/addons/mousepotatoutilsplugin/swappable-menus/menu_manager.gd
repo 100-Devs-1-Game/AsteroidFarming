@@ -10,7 +10,8 @@ var menus:Dictionary[String,SwappableMenu]
 var menu_stack:Array[SwappableMenu]=[]
 var game:Minigame
 
-func enter()->void:
+func enter(new_data:Dictionary)->void:
+	self.exported_data.merge(new_data,true)
 	while self.menu_stack:
 		self.close()
 	self.open(cur_menu)
@@ -89,17 +90,18 @@ func manage_open(new_menu:SwappableMenu,stack_up:bool=false)->void:
 		push_error("Missing menu!")
 	else:
 		self.cur_menu=new_menu
-	self.cur_menu.enter()
+	self.cur_menu.enter(self.exported_data)
 	return
 
 func manage_close()->void:
+	self.exported_data.merge(self.cur_menu.exported_data)
 	self.cur_menu.exit()
 	if self.menu_stack:
 		self.cur_menu=self.menu_stack.pop_back()
-		self.cur_menu.enter()
+		self.cur_menu.enter(self.exported_data)
 		return
 	if sig_close.get_connections():
-		self.cur_menu.enter()
+		self.cur_menu.enter(self.exported_data)
 		self.close()
 		return
 	get_tree().quit()

@@ -9,10 +9,10 @@ func open_minigame_menu():
 
 
 func end_game(data: Dictionary={}) -> void:
+	exported_data.merge(data,true)
 	quick_menu.close()
 	if "result" in data:
 		assert(result_menu)
 		self.manage_open(result_menu,true)
-	exported_data.merge(data,true)
 	print_debug(data)
 	self.game.queue_free()
