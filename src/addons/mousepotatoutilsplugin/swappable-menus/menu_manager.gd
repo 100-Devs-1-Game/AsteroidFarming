@@ -2,10 +2,13 @@ class_name MenuManager extends SwappableMenu
 
 var menus:Dictionary[String,SwappableMenu]
 @export var cur_menu:SwappableMenu=null
-@export var quick_menu:SwappableMenu
 @export var game_parent_node:Node
 @export var game_scene_template:PackedScene
 @export var child_game_scene_templates:Dictionary[String,PackedScene]
+# TODO: Add export for controller node
+@export_category("specific exports")
+@export var quick_menu:SwappableMenu
+@export_category("raw data")
 @export var default_values:Dictionary
 var menu_stack:Array[SwappableMenu]=[]
 var game:Minigame

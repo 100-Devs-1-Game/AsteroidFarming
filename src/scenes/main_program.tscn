@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=10 format=3 uid="uid://cqd5h1sjm4wig"]
 
 [ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_hoxkb"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://db14k63p1wo06" path="res://addons/mousepotatoutilsplugin/game-menus/quick_menu.gd" id="5_pyrb7"]
 [ext_resource type="Script" uid="uid://dpjimh1drowkt" path="res://scripts/score_menu.gd" id="7_o7yru"]
 [ext_resource type="Script" uid="uid://bcoel4y5j5jap" path="res://scenes/display_score.gd" id="8_csuw5"]
+[ext_resource type="PackedScene" uid="uid://bi217p14kehcu" path="res://scenes/various-control/various_control.tscn" id="9_pyrb7"]
 
 [node name="Main Program" type="Node3D"]
 
@@ -24,7 +25,7 @@ script = ExtResource("1_hoxkb")
 cur_menu = NodePath("Game Manager")
 game_parent_node = NodePath("../..")
 
-[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("result_menu", "cur_menu", "quick_menu", "game_parent_node", "scene_parent")]
+[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("result_menu", "cur_menu", "game_parent_node", "quick_menu", "scene_parent")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,9 +35,9 @@ grow_vertical = 2
 script = ExtResource("2_hw0gc")
 result_menu = NodePath("Score Result")
 cur_menu = NodePath("Main Menu")
-quick_menu = NodePath("Quick Menu")
 game_parent_node = NodePath("../../..")
 game_scene_template = ExtResource("3_hw0gc")
+quick_menu = NodePath("Quick Menu")
 scene_parent = NodePath("../../..")
 
 [node name="Main Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("options_menu", "leaderboard_menu", "scene_parent") instance=ExtResource("4_hw0gc")]
@@ -105,6 +106,8 @@ anchor_right = 0.75
 anchor_bottom = 0.70216
 script = ExtResource("8_csuw5")
 metadata/_edit_use_anchors_ = true
+
+[node name="Various Control" parent="." instance=ExtResource("9_pyrb7")]
 
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu" method="close"]
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Score Result/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Score Result" method="close"]
