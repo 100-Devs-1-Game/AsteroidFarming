@@ -2,8 +2,8 @@
 # @tool
 # @icon
 # @static_unload
-# class_name VariousControl
-extends Node
+# class_name _CLASS_
+extends _BASE_
 
 ## Insert doc comment here.
 
@@ -19,10 +19,8 @@ extends Node
 # Static variables
 
 # @export variables
-@export var input_audio_streams:Array[AudioStreamPlayer]
 
 # Other variables
-var audio_stream_dict:Dictionary[String,AudioStreamPlayer]
 
 # @onready class variables
 
@@ -35,12 +33,7 @@ var audio_stream_dict:Dictionary[String,AudioStreamPlayer]
 # Overridden built-in methods:
 # _init(), _enter_tree(), _ready(), _process(), _physics_process(), and then the rest
 # ------------------------------------------------------------------------------------------------ #
-func _init() -> void:
-	for audio_stream in input_audio_streams:
-		audio_stream_dict[audio_stream.name]=audio_stream
-	for child in self.get_children():
-		if is_instance_of(child,AudioStreamPlayer):
-			audio_stream_dict[child.name]=child
+
 # ------------------------------------------------------------------------------------------------ #
 # Overridden custom methods
 # ------------------------------------------------------------------------------------------------ #
@@ -48,9 +41,7 @@ func _init() -> void:
 # ------------------------------------------------------------------------------------------------ #
 # New methods
 # ------------------------------------------------------------------------------------------------ #
-func play_stream(name:String):
-	if name not in audio_stream_dict:
-		push_warning("Audio player %s not present!")
+
 # ------------------------------------------------------------------------------------------------ #
 # Subclasses
 # ------------------------------------------------------------------------------------------------ #

@@ -14,6 +14,8 @@ script = ExtResource("1_brsxu")
 [node name="Game Menu" parent="CanvasLayer" instance=ExtResource("7_p3mmm")]
 
 [connection signal="sig_change_value" from="." to="CanvasLayer/Game Menu" method="display_score"]
+[connection signal="sig_harvested" from="Main Scene" to="." method="_on_grid_map_sig_harvested"]
+[connection signal="sig_lost" from="Main Scene" to="." method="_on_grid_map_sig_lost"]
 [connection signal="sig_choose_tool" from="CanvasLayer/Game Menu" to="." method="choose_tool"]
 [connection signal="sig_end_game" from="CanvasLayer/Game Menu" to="." method="end_game"]
 [connection signal="sig_exit_to_menu" from="CanvasLayer/Game Menu" to="." method="exit_to_menu"]

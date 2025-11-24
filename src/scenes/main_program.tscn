@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=14 format=3 uid="uid://cqd5h1sjm4wig"]
 
 [ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_hoxkb"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
@@ -9,6 +9,17 @@
 [ext_resource type="Script" uid="uid://dpjimh1drowkt" path="res://scripts/score_menu.gd" id="7_o7yru"]
 [ext_resource type="Script" uid="uid://bcoel4y5j5jap" path="res://scenes/display_score.gd" id="8_csuw5"]
 [ext_resource type="PackedScene" uid="uid://bi217p14kehcu" path="res://scenes/various-control/various_control.tscn" id="9_pyrb7"]
+[ext_resource type="Shader" uid="uid://yoybrmfti32c" path="res://scenes/space_background.gdshader" id="10_7oe6v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3r87"]
+shader = ExtResource("10_7oe6v")
+
+[sub_resource type="Sky" id="Sky_rfnck"]
+sky_material = SubResource("ShaderMaterial_n3r87")
+
+[sub_resource type="Environment" id="Environment_up770"]
+background_mode = 2
+sky = SubResource("Sky_rfnck")
 
 [node name="Main Program" type="Node3D"]
 
@@ -108,6 +119,9 @@ script = ExtResource("8_csuw5")
 metadata/_edit_use_anchors_ = true
 
 [node name="Various Control" parent="." instance=ExtResource("9_pyrb7")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_up770")
 
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu" method="close"]
 [connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Score Result/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Score Result" method="close"]
