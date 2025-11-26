@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl8o042uf2iic"]
+
+[ext_resource type="Script" uid="uid://pwvl4p2ql7yc" path="res://addons/mousepotatoutilsplugin/misc-utils/global_manager.gd" id="1_6vo0j"]
+
+[node name="GlobalManager" type="Node"]
+script = ExtResource("1_6vo0j")

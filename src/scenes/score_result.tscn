@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://tktlnv5h2uah"]
+
+[ext_resource type="Script" uid="uid://dpjimh1drowkt" path="res://scripts/score_menu.gd" id="1_uoshk"]
+[ext_resource type="Script" uid="uid://bcoel4y5j5jap" path="res://scenes/display_score.gd" id="2_2ymss"]
+
+[node name="Score Result" type="Control" node_paths=PackedStringArray("display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uoshk")
+display = NodePath("VBoxContainer/RichTextLabel")
+
+[node name="Return" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00875
+anchor_top = 0.0183333
+anchor_right = 0.16625
+anchor_bottom = 0.0933333
+text = "Return to menu
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.242188
+anchor_top = 0.407407
+anchor_right = 0.75434
+anchor_bottom = 0.845679
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "This is where the score result would go"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_2ymss")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Enter your name:"
+
+[connection signal="pressed" from="Return" to="." method="close"]

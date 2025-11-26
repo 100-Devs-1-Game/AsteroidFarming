@@ -38,9 +38,7 @@ var audio_stream_dict:Dictionary[String,AudioStreamPlayer]
 func _init() -> void:
 	for audio_stream in input_audio_streams:
 		audio_stream_dict[audio_stream.name]=audio_stream
-	for child in self.get_children():
-		if is_instance_of(child,AudioStreamPlayer):
-			audio_stream_dict[child.name]=child
+	
 # ------------------------------------------------------------------------------------------------ #
 # Overridden custom methods
 # ------------------------------------------------------------------------------------------------ #

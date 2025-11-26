@@ -2,8 +2,8 @@
 # @tool
 # @icon
 # @static_unload
-# class_name _CLASS_
-extends _BASE_
+# class_name GlobalManager
+extends Node
 
 ## Insert doc comment here.
 
@@ -22,6 +22,8 @@ extends _BASE_
 # Static variables
 
 # @export variables
+@export var manual_asp:Array[AudioStreamPlayer]
+@export var search_children_for_auto:bool
 
 # Other variables
 
