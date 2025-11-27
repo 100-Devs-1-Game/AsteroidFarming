@@ -1,6 +1,7 @@
 class_name MenuManager extends SwappableMenu
 
 var menus:Dictionary[String,SwappableMenu]
+@export var control:VariousControl
 @export var cur_menu:SwappableMenu=null
 @export var game_parent_node:Node
 @export var game_scene_template:PackedScene
@@ -121,6 +122,7 @@ func play():
 	if not is_instance_of(test,Minigame):
 		push_error("Minigame node must inherit Minigame class!")
 	game=test
+	game.control=self.control
 	game.setup_game(self.exported_data)
 	game.start_game(self.exported_data)
 	game.sig_end.connect(end_game)

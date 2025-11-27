@@ -7,6 +7,8 @@ extends Node3D
 signal sig_harvested
 signal sig_lost(count:int)
 
+@export var control:VariousControl
+
 func pass_mouse_input():
 	var mouse_pos:=get_viewport().get_mouse_position()
 	main_camera.interact(mouse_pos,true)
@@ -21,3 +23,7 @@ func _on_grid_map_sig_harvested() -> void:
 
 func _on_grid_map_sig_lost(count: int) -> void:
 	sig_lost.emit(count)
+
+
+func _on_grid_map_sig_tool_sound(sound: String) -> void:
+	control.play_stream(sound)

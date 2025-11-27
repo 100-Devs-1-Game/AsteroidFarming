@@ -3,6 +3,8 @@ class_name Minigame extends Node
 signal sig_start
 signal sig_end(data:Dictionary)
 
+@export var control:VariousControl
+
 func setup_game(data:Dictionary={}):
 	push_error("Minigame %s setup not implemented!" % [self.name])
 

@@ -4,6 +4,7 @@ class_name FarmElementTransition extends Node3D
 @export var base:float
 @export var cap:float=1.0
 @export var modifiers:Dictionary[FarmConstants.TILE,float]
+@export var sound:String="none"
 
 func apply_modifier(el_type:FarmConstants.TILE,count:int)->float:
 	var modifier:float=modifiers.get(el_type,0.0)

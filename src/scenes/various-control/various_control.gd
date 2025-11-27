@@ -2,7 +2,7 @@
 # @tool
 # @icon
 # @static_unload
-# class_name VariousControl
+class_name VariousControl
 extends Node
 
 ## Insert doc comment here.
@@ -35,8 +35,10 @@ var audio_stream_dict:Dictionary[String,AudioStreamPlayer]
 # Overridden built-in methods:
 # _init(), _enter_tree(), _ready(), _process(), _physics_process(), and then the rest
 # ------------------------------------------------------------------------------------------------ #
-func _init() -> void:
+func _ready() -> void:
 	for audio_stream in input_audio_streams:
+		if audio_stream==null:
+			continue
 		audio_stream_dict[audio_stream.name]=audio_stream
 	
 # ------------------------------------------------------------------------------------------------ #
@@ -48,7 +50,10 @@ func _init() -> void:
 # ------------------------------------------------------------------------------------------------ #
 func play_stream(name:String):
 	if name not in audio_stream_dict:
-		push_warning("Audio player %s not present!")
+		push_warning("Audio player %s not present!" % [name])
+		return
+	var stream:=audio_stream_dict[name]
+	stream.play()
 # ------------------------------------------------------------------------------------------------ #
 # Subclasses
 # ------------------------------------------------------------------------------------------------ #

@@ -23,6 +23,8 @@ func setup_game(data:Dictionary={}):
 func start_game(data:Dictionary={}):
 	var ret_dict:=generate_ret_dict()
 	sig_change_value.emit(ret_dict)
+	var control=self.control
+	$"Main Scene".control=control
 
 func generate_ret_dict()->Dictionary:
 	var ret_dict:={

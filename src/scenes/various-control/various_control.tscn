@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi217p14kehcu"]
+[gd_scene load_steps=4 format=3 uid="uid://bi217p14kehcu"]
 
 [ext_resource type="Script" uid="uid://87nttuhdcw61" path="res://scenes/various-control/various_control.gd" id="1_1ju4j"]
 [ext_resource type="AudioStream" uid="uid://cut6x0jdy2dfd" path="res://assets/music/Lost Frontier.mp3" id="2_esw40"]
+[ext_resource type="AudioStream" uid="uid://dpkjic8mc3hhv" path="res://assets/music/wrong-47985.mp3" id="3_trsxa"]
 
-[node name="Various Control" type="Node"]
+[node name="Various Control" type="Node" node_paths=PackedStringArray("input_audio_streams")]
 script = ExtResource("1_1ju4j")
+input_audio_streams = [NodePath("Music"), NodePath("Test/wrong"), null, null, null, null, null, null, null, null]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_esw40")
 autoplay = true
 
 [node name="Test" type="Node" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Test"]
+[node name="wrong" type="AudioStreamPlayer" parent="Test"]
+stream = ExtResource("3_trsxa")

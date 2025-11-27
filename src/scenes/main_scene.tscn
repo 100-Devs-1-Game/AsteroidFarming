@@ -157,5 +157,6 @@ shape = SubResource("BoxShape3D_7ykc4")
 
 [connection signal="sig_harvested" from="GridMap" to="." method="_on_grid_map_sig_harvested"]
 [connection signal="sig_lost" from="GridMap" to="." method="_on_grid_map_sig_lost"]
+[connection signal="sig_tool_sound" from="GridMap" to="." method="_on_grid_map_sig_tool_sound"]
 [connection signal="timeout" from="GridMap/Select Timer" to="GridMap" method="toggle_hide"]
 [connection signal="timeout" from="GridMap/Cycle Timer" to="GridMap" method="run_cycle"]

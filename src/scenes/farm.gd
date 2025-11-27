@@ -10,6 +10,7 @@ var tool:FarmConstants.TOOL=FarmConstants.TOOL.NOTHING
 @export var true_gridmap:GridMap
 signal sig_harvested
 signal sig_lost(count:int)
+signal sig_tool_sound(sound: String)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not true_gridmap:
@@ -55,6 +56,8 @@ func interact(position:Vector3,click:bool):
 		self.true_gridmap.set_cell_item(cur_coords,change)
 		if cell_value==FarmConstants.TILE.END_WHEAT:
 			sig_harvested.emit()
+		var sound:=determine_sound(cell_value)
+		sig_tool_sound.emit(sound)
 		toggle_hide()
 		toggle_hide()
 	else:
@@ -72,6 +75,13 @@ func toggle_hide():
 		change=determine_change(cur_coords)
 	self.set_cell_item(cur_coords,change)
 	cur_stored=not cur_stored
+
+func determine_sound(cur:int)->String:
+	if cur not in self._element_dict:
+		return "wrong"
+	var element:FarmElement=self._element_dict.get(cur)
+	var res:String=element.manual_sound(self.tool)
+	return res
 
 func determine_change(cell:Vector3i)->int:
 	var cur:=true_gridmap.get_cell_item(cell)

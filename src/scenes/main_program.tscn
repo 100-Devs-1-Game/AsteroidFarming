@@ -25,7 +25,7 @@ sky = SubResource("Sky_rfnck")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Menu Metamanager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("cur_menu", "game_parent_node")]
+[node name="Menu Metamanager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("control", "cur_menu", "game_parent_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,10 +33,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hoxkb")
+control = NodePath("../../Various Control")
 cur_menu = NodePath("Game Manager")
 game_parent_node = NodePath("../..")
 
-[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("result_menu", "cur_menu", "game_parent_node", "quick_menu", "scene_parent")]
+[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("result_menu", "control", "cur_menu", "game_parent_node", "quick_menu", "scene_parent")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_hw0gc")
 result_menu = NodePath("Score Result")
+control = NodePath("../../../Various Control")
 cur_menu = NodePath("Main Menu")
 game_parent_node = NodePath("../../..")
 game_scene_template = ExtResource("3_hw0gc")
