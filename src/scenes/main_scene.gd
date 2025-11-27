@@ -9,7 +9,6 @@ signal sig_lost(count:int)
 
 func pass_mouse_input():
 	var mouse_pos:=get_viewport().get_mouse_position()
-	print_debug(mouse_pos)
 	main_camera.interact(mouse_pos,true)
 
 func choose_tool(ind:int):

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dpjimh1drowkt" path="res://scripts/score_menu.gd" id="1_uoshk"]
 [ext_resource type="Script" uid="uid://bcoel4y5j5jap" path="res://scenes/display_score.gd" id="2_2ymss"]
 
-[node name="Score Result" type="Control" node_paths=PackedStringArray("display")]
+[node name="Score Result" type="Control" node_paths=PackedStringArray("display", "name_input")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uoshk")
 display = NodePath("VBoxContainer/RichTextLabel")
+name_input = NodePath("VBoxContainer/TextEdit")
 
 [node name="Return" type="Button" parent="."]
 layout_mode = 1

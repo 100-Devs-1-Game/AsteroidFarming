@@ -19,8 +19,6 @@ func choose_tool(ind:int):
 
 func setup_game(data:Dictionary={}):
 	var grid_data:Dictionary=data.get("farm",{})
-	
-	push_error("Minigame %s setup not implemented!" % [self.name])
 
 func start_game(data:Dictionary={}):
 	var ret_dict:=generate_ret_dict()

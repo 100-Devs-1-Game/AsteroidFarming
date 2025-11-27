@@ -14,5 +14,4 @@ func end_game(data: Dictionary={}) -> void:
 	if "result" in data:
 		assert(result_menu)
 		self.manage_open(result_menu,true)
-	print_debug(data)
 	self.game.queue_free()

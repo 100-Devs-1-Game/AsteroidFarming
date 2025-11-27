@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=14 format=3 uid="uid://cqd5h1sjm4wig"]
 
 [ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_hoxkb"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cfw84xjyjt6po" path="res://addons/mousepotatoutilsplugin/game-menus/options_menu.tscn" id="4_csuw5"]
 [ext_resource type="PackedScene" uid="uid://u3v6d72num8e" path="res://scenes/af_main_menu.tscn" id="4_hw0gc"]
 [ext_resource type="Script" uid="uid://db14k63p1wo06" path="res://addons/mousepotatoutilsplugin/game-menus/quick_menu.gd" id="5_pyrb7"]
+[ext_resource type="PackedScene" uid="uid://cptj6mheajxvy" path="res://scenes/leaderboard_menu.tscn" id="7_7oe6v"]
 [ext_resource type="PackedScene" uid="uid://tktlnv5h2uah" path="res://scenes/score_result.tscn" id="7_pyrb7"]
 [ext_resource type="PackedScene" uid="uid://bi217p14kehcu" path="res://scenes/various-control/various_control.tscn" id="9_pyrb7"]
 [ext_resource type="Shader" uid="uid://yoybrmfti32c" path="res://scenes/space_background.gdshader" id="10_7oe6v"]
@@ -43,7 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_hw0gc")
-result_menu = NodePath("")
+result_menu = NodePath("Score Result")
 cur_menu = NodePath("Main Menu")
 game_parent_node = NodePath("../../..")
 game_scene_template = ExtResource("3_hw0gc")
@@ -68,32 +69,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_pyrb7")
 
-[node name="Leaderboard Menu" type="Control" parent="CanvasLayer/Menu Metamanager/Game Manager"]
+[node name="Leaderboard Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" instance=ExtResource("7_7oe6v")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_pyrb7")
 
-[node name="Return" type="Button" parent="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu"]
+[node name="Score Result" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("leaderboard_menu") instance=ExtResource("7_pyrb7")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00875
-anchor_top = 0.0183333
-anchor_right = 0.16625
-anchor_bottom = 0.0933333
-text = "Return to menu
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="Score Result" parent="CanvasLayer/Menu Metamanager/Game Manager" instance=ExtResource("7_pyrb7")]
-layout_mode = 1
+leaderboard_menu = NodePath("../Leaderboard Menu")
 
 [node name="Various Control" parent="." instance=ExtResource("9_pyrb7")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_up770")
-
-[connection signal="pressed" from="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu/Return" to="CanvasLayer/Menu Metamanager/Game Manager/Leaderboard Menu" method="close"]
