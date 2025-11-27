@@ -41,7 +41,7 @@ extends SwappableMenu
 # ------------------------------------------------------------------------------------------------ #
 func enter(new_data:Dictionary)->void:
 	self.exported_data.merge(new_data,true)
-	var leaderboard:Array[Dictionary]=[]
+	var leaderboard:Array=[]
 	leaderboard=self.exported_data.get_or_add("leaderboard",leaderboard)
 	var res:Array[String]=[]
 	for el in leaderboard:
@@ -54,7 +54,9 @@ func enter(new_data:Dictionary)->void:
 # ------------------------------------------------------------------------------------------------ #
 # New methods
 # ------------------------------------------------------------------------------------------------ #
-
+func erase():
+	self.exported_data.set("leaderboard",[])
+	close()
 # ------------------------------------------------------------------------------------------------ #
 # Subclasses
 # ------------------------------------------------------------------------------------------------ #

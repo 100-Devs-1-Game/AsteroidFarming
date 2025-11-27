@@ -28,7 +28,7 @@ func submit_to_leaderboard() -> void:
 	if self.result.is_empty(): return
 	if name.is_empty(): return
 	var lead_size:int=self.exported_data.get("leaderboard_size",10)
-	var leaderboard:Array[Dictionary]=[]
+	var leaderboard:Array=[]
 	
 	leaderboard=self.exported_data.get_or_add("leaderboard",leaderboard)
 	leaderboard.append(self.result)

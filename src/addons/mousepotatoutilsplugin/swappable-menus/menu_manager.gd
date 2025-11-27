@@ -40,11 +40,14 @@ func load_data():
 		return
 	var file=FileAccess.open(SAVEPATH,FileAccess.READ)
 	var raw:String=file.get_as_text()
+	if raw.is_empty():
+		save_data()
+		return
 	self.exported_data=JSON.parse_string(raw)
 	file.close()
 
 func save_data():
-	var file=FileAccess.open(SAVEPATH,FileAccess.READ)
+	var file=FileAccess.open(SAVEPATH,FileAccess.WRITE)
 	var raw:String=JSON.stringify(self.exported_data)
 	file.store_string(raw)
 	file.close()
@@ -104,7 +107,9 @@ func manage_open_raw(new_menu:String,stack_up:bool=false):
 	self.manage_open(self.menus[new_menu],stack_up)
 
 func manage_open(new_menu:SwappableMenu,stack_up:bool=false)->void:
+	self.exported_data.merge(self.cur_menu.exported_data,true)
 	self.cur_menu.exit()
+	save_data()
 	if stack_up:
 		self.menu_stack.append(self.cur_menu)
 	if new_menu==null:
@@ -115,7 +120,7 @@ func manage_open(new_menu:SwappableMenu,stack_up:bool=false)->void:
 	return
 
 func manage_close()->void:
-	self.exported_data.merge(self.cur_menu.exported_data)
+	self.exported_data.merge(self.cur_menu.exported_data,true)
 	save_data()
 	self.cur_menu.exit()
 	if self.menu_stack:
