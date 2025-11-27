@@ -31,6 +31,23 @@ func _ready() -> void:
 	if cur_menu and cur_menu.name in menus:
 		cur_menu=menus[cur_menu.name]
 		cur_menu.show()
+	load_data()
+
+@export var SAVEPATH="user://save.data"
+func load_data():
+	if not FileAccess.file_exists(SAVEPATH):
+		save_data()
+		return
+	var file=FileAccess.open(SAVEPATH,FileAccess.READ)
+	var raw:String=file.get_as_text()
+	self.exported_data=JSON.parse_string(raw)
+	file.close()
+
+func save_data():
+	var file=FileAccess.open(SAVEPATH,FileAccess.READ)
+	var raw:String=JSON.stringify(self.exported_data)
+	file.store_string(raw)
+	file.close()
 
 func setup_one_child_swappable_menu(menu:SwappableMenu):
 	menu.hide()
@@ -99,6 +116,7 @@ func manage_open(new_menu:SwappableMenu,stack_up:bool=false)->void:
 
 func manage_close()->void:
 	self.exported_data.merge(self.cur_menu.exported_data)
+	save_data()
 	self.cur_menu.exit()
 	if self.menu_stack:
 		self.cur_menu=self.menu_stack.pop_back()

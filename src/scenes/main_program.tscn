@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=13 format=3 uid="uid://cqd5h1sjm4wig"]
 
-[ext_resource type="Script" uid="uid://cl3fwo2375k1t" path="res://addons/mousepotatoutilsplugin/swappable-menus/menu_manager.gd" id="1_hoxkb"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
 [ext_resource type="PackedScene" uid="uid://c6opgwwqcyu8k" path="res://scenes/main_node.tscn" id="3_hw0gc"]
 [ext_resource type="PackedScene" uid="uid://cfw84xjyjt6po" path="res://addons/mousepotatoutilsplugin/game-menus/options_menu.tscn" id="4_csuw5"]
@@ -25,20 +24,8 @@ sky = SubResource("Sky_rfnck")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Menu Metamanager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("control", "cur_menu", "game_parent_node")]
+[node name="Game Manager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("result_menu", "control", "cur_menu", "game_parent_node", "quick_menu", "scene_parent")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_hoxkb")
-control = NodePath("../../Various Control")
-cur_menu = NodePath("Game Manager")
-game_parent_node = NodePath("../..")
-
-[node name="Game Manager" type="Control" parent="CanvasLayer/Menu Metamanager" node_paths=PackedStringArray("result_menu", "control", "cur_menu", "game_parent_node", "quick_menu", "scene_parent")]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,23 +33,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_hw0gc")
 result_menu = NodePath("Score Result")
-control = NodePath("../../../Various Control")
+control = NodePath("../../Various Control")
 cur_menu = NodePath("Main Menu")
-game_parent_node = NodePath("../../..")
+game_parent_node = NodePath("../..")
 game_scene_template = ExtResource("3_hw0gc")
 quick_menu = NodePath("Quick Menu")
-scene_parent = NodePath("../../..")
+scene_parent = NodePath("../..")
 
-[node name="Main Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("options_menu", "leaderboard_menu", "scene_parent") instance=ExtResource("4_hw0gc")]
+[node name="Main Menu" parent="CanvasLayer/Game Manager" node_paths=PackedStringArray("options_menu", "leaderboard_menu", "scene_parent") instance=ExtResource("4_hw0gc")]
 layout_mode = 1
 options_menu = NodePath("../Options Menu")
 leaderboard_menu = NodePath("../Leaderboard Menu")
-scene_parent = NodePath("../../../..")
+scene_parent = NodePath("../../..")
 
-[node name="Options Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" instance=ExtResource("4_csuw5")]
+[node name="Options Menu" parent="CanvasLayer/Game Manager" instance=ExtResource("4_csuw5")]
 layout_mode = 1
 
-[node name="Quick Menu" type="Control" parent="CanvasLayer/Menu Metamanager/Game Manager"]
+[node name="Quick Menu" type="Control" parent="CanvasLayer/Game Manager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,14 +58,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_pyrb7")
 
-[node name="Leaderboard Menu" parent="CanvasLayer/Menu Metamanager/Game Manager" instance=ExtResource("7_7oe6v")]
+[node name="Leaderboard Menu" parent="CanvasLayer/Game Manager" instance=ExtResource("7_7oe6v")]
 layout_mode = 1
 
-[node name="Score Result" parent="CanvasLayer/Menu Metamanager/Game Manager" node_paths=PackedStringArray("leaderboard_menu") instance=ExtResource("7_pyrb7")]
+[node name="Score Result" parent="CanvasLayer/Game Manager" node_paths=PackedStringArray("leaderboard_menu") instance=ExtResource("7_pyrb7")]
 layout_mode = 1
 leaderboard_menu = NodePath("../Leaderboard Menu")
 
-[node name="Various Control" parent="." instance=ExtResource("9_pyrb7")]
+[node name="Various Control" parent="." node_paths=PackedStringArray("input_audio_streams") instance=ExtResource("9_pyrb7")]
+input_audio_streams = [NodePath("Music"), NodePath("Test/wrong"), null, null, null, null, null, null, null, null]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_up770")
