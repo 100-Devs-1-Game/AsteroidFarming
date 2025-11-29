@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=16 format=3 uid="uid://cqd5h1sjm4wig"]
 
 [ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_7oe6v"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bhpoja4ylbqyc" path="res://addons/mousepotatoutilsplugin/swappable-menus/swappable_menu.gd" id="9_n3r87"]
 [ext_resource type="PackedScene" uid="uid://bi217p14kehcu" path="res://scenes/various-control/various_control.tscn" id="9_pyrb7"]
 [ext_resource type="Shader" uid="uid://yoybrmfti32c" path="res://scenes/space_background.gdshader" id="10_7oe6v"]
+[ext_resource type="Script" uid="uid://b4ngoohs1gtes" path="res://scenes/credits_text.gd" id="10_rfnck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3r87"]
 shader = ExtResource("10_7oe6v")
@@ -101,6 +102,7 @@ anchor_top = 0.104938
 anchor_right = 0.874132
 anchor_bottom = 0.813272
 text = "This is where the credits go"
+script = ExtResource("10_rfnck")
 metadata/_edit_use_anchors_ = true
 
 [node name="Various Control" parent="." node_paths=PackedStringArray("input_audio_streams") instance=ExtResource("9_pyrb7")]
