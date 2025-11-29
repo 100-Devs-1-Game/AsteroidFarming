@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://7qthkle73y7s"
-path="res://.godot/imported/SpaceMadness-lz1q.ttf-9f82b32380e4e7926594c76234a01c2c.fontdata"
+uid="uid://cr8wgfgruxy3x"
+path="res://.godot/imported/SpaceGame-ywxX2.ttf-270779cf43bad7866c1c5877996e15d0.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/space-madness-font/SpaceMadness-lz1q.ttf"
-dest_files=["res://.godot/imported/SpaceMadness-lz1q.ttf-9f82b32380e4e7926594c76234a01c2c.fontdata"]
+source_file="res://fonts/space-game-font/SpaceGame-ywxX2.ttf"
+dest_files=["res://.godot/imported/SpaceGame-ywxX2.ttf-270779cf43bad7866c1c5877996e15d0.fontdata"]
 
 [params]
 

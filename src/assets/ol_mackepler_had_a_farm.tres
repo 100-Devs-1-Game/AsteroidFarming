@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://bdwnun1mglwrw"]
 
-[ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://assets/fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_7t4ja"]
+[ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_7t4ja"]
 
 [resource]
 default_font = ExtResource("1_7t4ja")
