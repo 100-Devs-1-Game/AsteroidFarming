@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b678c7or5y245"]
+
+[ext_resource type="FontFile" uid="uid://dos3gj14rjxam" path="res://assets/fonts/space-game-font/SpaceGame-6YGgo.otf" id="1_i3nm0"]
+
+[resource]
+default_font = ExtResource("1_i3nm0")
+default_font_size = 69

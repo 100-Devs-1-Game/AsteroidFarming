@@ -11,6 +11,7 @@ input_audio_streams = [NodePath("Music"), NodePath("Test/wrong"), null, null, nu
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_esw40")
 autoplay = true
+parameters/looping = true
 
 [node name="Test" type="Node" parent="."]
 

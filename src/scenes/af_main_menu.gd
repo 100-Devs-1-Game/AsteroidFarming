@@ -4,6 +4,7 @@ class_name AsteroidFarmingMainMenu extends SwappableMenu
 @export var title: String
 @export var options_button:Button
 @export var options_menu:SwappableMenu
+@export var credits_menu:SwappableMenu
 @export var leaderboard_menu:SwappableMenu
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,3 +27,7 @@ func _on_play_pressed() -> void:
 
 func _on_leaderboard_pressed() -> void:
 	self.sig_swap.emit(leaderboard_menu,true)
+
+
+func _on_credits_pressed() -> void:
+	self.sig_swap.emit(credits_menu,true)
