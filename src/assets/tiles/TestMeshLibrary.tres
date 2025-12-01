@@ -1,7 +1,17 @@
-[gd_resource type="MeshLibrary" load_steps=36 format=3 uid="uid://dj2gwxmun3byt"]
+[gd_resource type="MeshLibrary" load_steps=43 format=3 uid="uid://dj2gwxmun3byt"]
+
+[ext_resource type="Texture2D" uid="uid://dxwrrmqglg86k" path="res://assets/tiles/rock_cube.png" id="1_srg7x"]
+[ext_resource type="Texture2D" uid="uid://cjp8lj8pf3nnv" path="res://assets/tiles/dirt_cube.png" id="2_bmtx5"]
+[ext_resource type="Texture2D" uid="uid://y8q0tsd3k4q" path="res://assets/tiles/blue_cube.png" id="3_u2i5t"]
+[ext_resource type="Texture2D" uid="uid://bpu78a860hax2" path="res://assets/tiles/hoed_cube.png" id="4_nwaom"]
+[ext_resource type="Texture2D" uid="uid://ccrqsp4stfd06" path="res://assets/tiles/green_cube.png" id="5_cxi7j"]
+[ext_resource type="Texture2D" uid="uid://bg6mg3xh5xf51" path="res://assets/tiles/crop_cube.png" id="6_rwl44"]
+[ext_resource type="Texture2D" uid="uid://btihxc0q8g6ec" path="res://assets/tiles/virus_cube.png" id="7_wi5h1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j40u"]
-albedo_color = Color(0.5, 0.5, 0.5, 1)
+albedo_color = Color(0.637843, 0.637843, 0.637843, 1)
+albedo_texture = ExtResource("1_srg7x")
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gupbg"]
 material = SubResource("StandardMaterial3D_2j40u")
@@ -22,7 +32,9 @@ image = SubResource("Image_gupbg")
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od8sr"]
-albedo_color = Color(0.34, 0.153, 0, 1)
+albedo_color = Color(0.585822, 0.300622, 0.131774, 1)
+albedo_texture = ExtResource("2_bmtx5")
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_mu2p8"]
 material = SubResource("StandardMaterial3D_od8sr")
@@ -43,7 +55,11 @@ image = SubResource("Image_gncyg")
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhpg2"]
-albedo_color = Color(0.0413105, 0, 0.906735, 1)
+albedo_color = Color(0.623645, 0.743521, 1, 1)
+albedo_texture = ExtResource("3_u2i5t")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_auhr7"]
 material = SubResource("StandardMaterial3D_jhpg2")
@@ -65,7 +81,11 @@ image = SubResource("Image_ssaar")
 data = PackedVector3Array(-0.5, 0.4, 0.5, 0.5, 0.4, 0.5, -0.5, -0.4, 0.5, 0.5, 0.4, 0.5, 0.5, -0.4, 0.5, -0.5, -0.4, 0.5, 0.5, 0.4, -0.5, -0.5, 0.4, -0.5, 0.5, -0.4, -0.5, -0.5, 0.4, -0.5, -0.5, -0.4, -0.5, 0.5, -0.4, -0.5, 0.5, 0.4, 0.5, 0.5, 0.4, -0.5, 0.5, -0.4, 0.5, 0.5, 0.4, -0.5, 0.5, -0.4, -0.5, 0.5, -0.4, 0.5, -0.5, 0.4, -0.5, -0.5, 0.4, 0.5, -0.5, -0.4, -0.5, -0.5, 0.4, 0.5, -0.5, -0.4, 0.5, -0.5, -0.4, -0.5, 0.5, 0.4, 0.5, -0.5, 0.4, 0.5, 0.5, 0.4, -0.5, -0.5, 0.4, 0.5, -0.5, 0.4, -0.5, 0.5, 0.4, -0.5, -0.5, -0.4, 0.5, 0.5, -0.4, 0.5, -0.5, -0.4, -0.5, 0.5, -0.4, 0.5, 0.5, -0.4, -0.5, -0.5, -0.4, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3m0d"]
-albedo_color = Color(0.360784, 0.270588, 0.105882, 1)
+albedo_color = Color(0.971703, 0.682665, 0.440174, 1)
+albedo_texture = ExtResource("4_nwaom")
+uv1_scale = Vector3(0.845, 0.935, 1)
+uv1_offset = Vector3(-0.025, 0.06, 0)
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_u2i5t"]
 material = SubResource("StandardMaterial3D_i3m0d")
@@ -86,7 +106,11 @@ image = SubResource("Image_mu2p8")
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ykc4"]
-albedo_color = Color(0, 0.557988, 0.27425, 1)
+albedo_color = Color(0, 0.850914, 0.431588, 1)
+albedo_texture = ExtResource("5_cxi7j")
+uv1_offset = Vector3(-0.53, -0.955, 0.485)
+uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_rwl44"]
 material = SubResource("StandardMaterial3D_7ykc4")
@@ -108,7 +132,9 @@ image = SubResource("Image_jtojg")
 data = PackedVector3Array(-0.5, 1, 0.5, 0.5, 1, 0.5, -0.5, -1, 0.5, 0.5, 1, 0.5, 0.5, -1, 0.5, -0.5, -1, 0.5, 0.5, 1, -0.5, -0.5, 1, -0.5, 0.5, -1, -0.5, -0.5, 1, -0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, 0.5, 1, 0.5, 0.5, 1, -0.5, 0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, -1, -0.5, -0.5, 1, 0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, 1, -0.5, 0.5, 1, -0.5, -0.5, -1, 0.5, 0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1tb5"]
-albedo_color = Color(0.349062, 0.282882, 0, 1)
+albedo_color = Color(1, 0.900646, 0.563346, 1)
+albedo_texture = ExtResource("6_rwl44")
+uv1_scale = Vector3(1, 1.32, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vwa7p"]
 material = SubResource("StandardMaterial3D_c1tb5")
@@ -130,7 +156,11 @@ image = SubResource("Image_qcob1")
 data = PackedVector3Array(-0.55, 1.5, 0.55, 0.55, 1.5, 0.55, -0.55, -1.5, 0.55, 0.55, 1.5, 0.55, 0.55, -1.5, 0.55, -0.55, -1.5, 0.55, 0.55, 1.5, -0.55, -0.55, 1.5, -0.55, 0.55, -1.5, -0.55, -0.55, 1.5, -0.55, -0.55, -1.5, -0.55, 0.55, -1.5, -0.55, 0.55, 1.5, 0.55, 0.55, 1.5, -0.55, 0.55, -1.5, 0.55, 0.55, 1.5, -0.55, 0.55, -1.5, -0.55, 0.55, -1.5, 0.55, -0.55, 1.5, -0.55, -0.55, 1.5, 0.55, -0.55, -1.5, -0.55, -0.55, 1.5, 0.55, -0.55, -1.5, 0.55, -0.55, -1.5, -0.55, 0.55, 1.5, 0.55, -0.55, 1.5, 0.55, 0.55, 1.5, -0.55, -0.55, 1.5, 0.55, -0.55, 1.5, -0.55, 0.55, 1.5, -0.55, -0.55, -1.5, 0.55, 0.55, -1.5, 0.55, -0.55, -1.5, -0.55, 0.55, -1.5, 0.55, 0.55, -1.5, -0.55, -0.55, -1.5, -0.55)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2twt"]
-albedo_color = Color(0.45, 0, 0, 1)
+albedo_color = Color(0.985999, 0.938663, 0.99087, 1)
+albedo_texture = ExtResource("7_wi5h1")
+uv1_scale = Vector3(1.29, 0.825, 1)
+uv1_offset = Vector3(-0.13, -0.965, -0.025)
+texture_filter = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_g80wo"]
 material = SubResource("StandardMaterial3D_w2twt")
