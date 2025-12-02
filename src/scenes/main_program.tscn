@@ -101,7 +101,29 @@ anchor_left = 0.0798611
 anchor_top = 0.104938
 anchor_right = 0.874132
 anchor_bottom = 0.813272
-text = "This is where the credits go"
+text = "Credits for Asteroid Farming
+Lead Developer: Mouse Potato Does Stuff
+Assistant Lead Dev: Codimon
+TODO: Insert everyone else
+
+Audio:
+\"Lost Frontier\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"wrong\" Sound Effect by freesound_community https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47985\"
+from
+https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47985
+Pixabay
+
+Fonts:
+Space Game
+license: Freeware, Non-Commercial
+link: https://www.fontspace.com/space-game-font-f71162
+Space Madness
+license: Freeware, commercial use requires donation
+link: https://www.fontspace.com/space-madness-font-f29854
+"
 script = ExtResource("10_rfnck")
 metadata/_edit_use_anchors_ = true
 

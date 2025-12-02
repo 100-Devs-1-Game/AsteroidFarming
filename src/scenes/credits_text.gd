@@ -1,8 +1,11 @@
 extends RichTextLabel
 
-@export var credits_file_path:="res://credits.txt"
+@export var credits_file_path:="res://roll.credits"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	return
+
+func figure_it_out_yourself_idgaf():
 	if not FileAccess.file_exists(credits_file_path):
 		self.text="File %s missing!" % [credits_file_path]
 	var file=FileAccess.open(credits_file_path,FileAccess.READ)
