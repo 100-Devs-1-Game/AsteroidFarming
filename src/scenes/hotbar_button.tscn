@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy3eyu8gfyu1n"]
+
+[ext_resource type="Texture2D" uid="uid://b7fhm22gog55y" path="res://assets/art/bucket_icon.png" id="1_dxgyy"]
+[ext_resource type="Script" uid="uid://fj5r1j88axxh" path="res://scenes/hotbar_button.gd" id="1_onmbr"]
+
+[node name="HotbarButton" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+script = ExtResource("1_onmbr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_dxgyy")
