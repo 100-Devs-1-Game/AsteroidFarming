@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name MpupUiDictElement extends HBoxContainer
 
 signal sig_updated(key:String, value:String)

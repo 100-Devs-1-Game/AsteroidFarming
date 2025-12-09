@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name MpupUiObjectListItem extends Control
 
 signal sig_updated

@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name MpupUiObjectList extends BoxContainer
 
 enum SORTMETHOD {
