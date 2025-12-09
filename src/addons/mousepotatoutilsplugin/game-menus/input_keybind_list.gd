@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name InputKeybindList extends MpupUiObjectList
 
 var is_remapping:=false
