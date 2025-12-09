@@ -9,6 +9,9 @@ metadata/_snap_enabled = true
 frequency = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_up770"]
+width = 256
+height = 256
+generate_mipmaps = false
 noise = SubResource("FastNoiseLite_rfnck")
 color_ramp = SubResource("Gradient_n3r87")
 
