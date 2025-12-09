@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqd5h1sjm4wig"]
+[gd_scene load_steps=18 format=3 uid="uid://cqd5h1sjm4wig"]
 
 [ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_7oe6v"]
 [ext_resource type="Script" uid="uid://ba15kb2teyn3e" path="res://addons/mousepotatoutilsplugin/game-menus/game_manager.gd" id="2_hw0gc"]
@@ -10,17 +10,30 @@
 [ext_resource type="PackedScene" uid="uid://tktlnv5h2uah" path="res://scenes/score_result.tscn" id="7_pyrb7"]
 [ext_resource type="Script" uid="uid://bhpoja4ylbqyc" path="res://addons/mousepotatoutilsplugin/swappable-menus/swappable_menu.gd" id="9_n3r87"]
 [ext_resource type="PackedScene" uid="uid://bi217p14kehcu" path="res://scenes/various-control/various_control.tscn" id="9_pyrb7"]
-[ext_resource type="Shader" uid="uid://yoybrmfti32c" path="res://scenes/space_background.gdshader" id="10_7oe6v"]
 [ext_resource type="Script" uid="uid://b4ngoohs1gtes" path="res://scenes/credits_text.gd" id="10_rfnck"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3r87"]
-shader = ExtResource("10_7oe6v")
+[sub_resource type="Gradient" id="Gradient_n3r87"]
+offsets = PackedFloat32Array(0, 0.6, 0.7, 0.8, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.073148705, 2.7819575e-05, 0.104602195, 1, 0.024999978, 0, 0.15, 1, 0.24563003, 0.14209999, 0.29, 1, 0.6573601, 0.5112001, 0.72, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfnck"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_up770"]
+noise = SubResource("FastNoiseLite_rfnck")
+color_ramp = SubResource("Gradient_n3r87")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rvr6v"]
+panorama = SubResource("NoiseTexture2D_up770")
+filter = false
 
 [sub_resource type="Sky" id="Sky_rfnck"]
-sky_material = SubResource("ShaderMaterial_n3r87")
+sky_material = SubResource("PanoramaSkyMaterial_rvr6v")
 
 [sub_resource type="Environment" id="Environment_up770"]
 background_mode = 2
+background_canvas_max_layer = 1
 sky = SubResource("Sky_rfnck")
 
 [node name="Main Program" type="Node3D"]
