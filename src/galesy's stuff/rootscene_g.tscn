@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4mpcr7a6pv11"]
+
+[ext_resource type="PackedScene" uid="uid://70ym23bjjyoh" path="res://galesy's stuff/main_g.tscn" id="1_bhpmy"]
+[ext_resource type="PackedScene" uid="uid://dol0jgsija6cb" path="res://galesy's stuff/main_menu_g.tscn" id="2_cfihd"]
+
+[node name="rootscene" type="Node"]
+
+[node name="Main" parent="." instance=ExtResource("1_bhpmy")]
+visible = false
+
+[node name="Main Menu" parent="." instance=ExtResource("2_cfihd")]

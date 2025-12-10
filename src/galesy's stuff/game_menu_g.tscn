@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://u07ux4av6dcg"]
+
+[ext_resource type="Script" uid="uid://2wlxi163ghg8" path="res://galesy's stuff/game_menu_g.gd" id="1_8lrby"]
+[ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="2_p4b25"]
+[ext_resource type="Texture2D" uid="uid://dgk6xtqgni6vv" path="res://assets/art/shovel_icon.png" id="5_ye8xr"]
+[ext_resource type="Texture2D" uid="uid://b7fhm22gog55y" path="res://assets/art/bucket_icon.png" id="6_tox7i"]
+[ext_resource type="Texture2D" uid="uid://d0kdng5s0glbr" path="res://assets/art/hoe_icon.png" id="7_q233v"]
+[ext_resource type="Texture2D" uid="uid://vfaiwwpl7ne4" path="res://assets/art/collector_icon.png" id="8_laclm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20eqh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.973535, 0.973535, 0.973535, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Game Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8lrby")
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 125.0
+offset_bottom = 362.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Sidebar"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="harvest_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="lost_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="End Game" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p4b25")
+text = "Complete"
+
+[node name="Exit to Menu" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p4b25")
+text = "Exit to Menu"
+
+[node name="Exit to Desktop" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p4b25")
+text = "Exit to Desktop"
+
+[node name="Hotbar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -272.0
+offset_bottom = 272.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20eqh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hotbar"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hotbar/MarginContainer"]
+layout_mode = 2
+
+[node name="tool_bucket" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_tox7i")
+
+[node name="tool_shovel" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_ye8xr")
+
+[node name="tool_hoe" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_q233v")
+
+[node name="tool_collector" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_laclm")
+
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/End Game" to="." method="_on_end_game_button_down"]
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/Exit to Menu" to="." method="_on_exit_to_menu_button_down"]
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/Exit to Desktop" to="." method="_on_exit_to_desktop_button_down"]
+[connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_bucket" to="." method="_on_tool_bucket_button_down"]
+[connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_shovel" to="." method="_on_tool_shovel_button_down"]
+[connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_hoe" to="." method="_on_tool_hoe_button_down"]
+[connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_collector" to="." method="_on_tool_collector_button_down"]

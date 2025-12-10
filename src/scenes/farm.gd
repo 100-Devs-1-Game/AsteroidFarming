@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func choose_tool(ind:int):
-	self.tool=ind
+	tool=ind
 
 func setup(data:Dictionary={}) -> void:
 	select_timer.wait_time=data.get('select_time',select_timer.wait_time)

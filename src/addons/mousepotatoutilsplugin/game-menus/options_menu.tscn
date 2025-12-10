@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://btmfln5l5eqmx" path="res://addons/mousepotatoutilsplugin/game-menus/keybinds/multiple_input_keybind.tscn" id="4_p8err"]
 
 [node name="Options Menu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_p2i8m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
