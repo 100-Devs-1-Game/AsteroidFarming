@@ -1,29 +1,17 @@
-[gd_resource type="Environment" load_steps=6 format=3 uid="uid://dol1vabg3lf3"]
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dol1vabg3lf3"]
 
-[sub_resource type="Gradient" id="Gradient_n3r87"]
-offsets = PackedFloat32Array(0, 0.6, 0.7, 0.8, 0.9, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.073148705, 2.7819575e-05, 0.104602195, 1, 0.024999978, 0, 0.15, 1, 0.24563003, 0.14209999, 0.29, 1, 0.6573601, 0.5112001, 0.72, 1, 1, 1, 1, 1)
-metadata/_snap_enabled = true
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fynbl"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfnck"]
-frequency = 1.0
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2xi55"]
+noise = SubResource("FastNoiseLite_fynbl")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_up770"]
-width = 256
-height = 256
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_rfnck")
-color_ramp = SubResource("Gradient_n3r87")
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rvr6v"]
-panorama = SubResource("NoiseTexture2D_up770")
-filter = false
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_e8svi"]
+night_sky = SubResource("NoiseTexture2D_2xi55")
 
 [sub_resource type="Sky" id="Sky_rfnck"]
-sky_material = SubResource("PanoramaSkyMaterial_rvr6v")
-radiance_size = 0
+sky_material = SubResource("PhysicalSkyMaterial_e8svi")
 
 [resource]
-background_mode = 2
+background_mode = 1
 background_canvas_max_layer = 1
 sky = SubResource("Sky_rfnck")

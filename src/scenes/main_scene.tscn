@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwmucm45i15w4"]
+[gd_scene load_steps=14 format=3 uid="uid://bwmucm45i15w4"]
 
 [ext_resource type="Script" uid="uid://cwvbjpgdkgk3o" path="res://scenes/main_scene.gd" id="1_rt2n2"]
 [ext_resource type="Script" uid="uid://qmqny13dn51b" path="res://scenes/main_camera.gd" id="2_c16ls"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cyikgmoxhotjh" path="res://scenes/farm.gd" id="4_c1pb6"]
 [ext_resource type="Script" uid="uid://71jxb0tokcx4" path="res://scripts/farm_element.gd" id="5_6wevv"]
 [ext_resource type="Script" uid="uid://5tnrmukvr7sp" path="res://scripts/farm_element_transition.gd" id="6_e1cbu"]
+[ext_resource type="Script" uid="uid://7cya8gad5rw4" path="res://scenes/starfield.gd" id="7_c16ls"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7ykc4"]
 
@@ -14,6 +15,24 @@ radius = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ykc4"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt2n2"]
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c16ls"]
+material = SubResource("StandardMaterial3D_rt2n2")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_c16ls"]
+colors = PackedColorArray(0.3766584, 0.37665856, 0.37665793, 1, 1, 1, 1, 1)
 
 [node name="Main Scene" type="Node3D"]
 script = ExtResource("1_rt2n2")
@@ -154,6 +173,18 @@ mesh = SubResource("SphereMesh_pu3yx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_7ykc4")
+
+[node name="Starfield" type="CPUParticles3D" parent="."]
+amount = 500
+lifetime = 600.0
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_c16ls")
+emission_shape = 2
+emission_sphere_radius = 128.0
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 0.2
+color_initial_ramp = SubResource("Gradient_c16ls")
+script = ExtResource("7_c16ls")
 
 [connection signal="sig_harvested" from="GridMap" to="." method="_on_grid_map_sig_harvested"]
 [connection signal="sig_lost" from="GridMap" to="." method="_on_grid_map_sig_lost"]
