@@ -14,10 +14,16 @@ func _on_play_button_down() -> void:
 	#pass # Replace with function body.
 
 func _on_credits_button_down() -> void:
-	pass # Replace with function body.
+	$VBoxContainer.hide()
+	$credits.show()
 
-func _on_exit_button_down() -> void:
-	pass # Replace with function body.
+#func _on_exit_button_down() -> void:
+	#pass # Replace with function body.
 
 func _on_exit_all_button_down() -> void:
-	pass # Replace with function body.
+	get_tree().quit()
+
+
+func _on_return_credits_button_down() -> void:
+	$VBoxContainer.show()
+	$credits.hide()

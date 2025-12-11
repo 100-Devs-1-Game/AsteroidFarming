@@ -67,9 +67,72 @@ text = "Asteroid Farming"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="credits" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="credits"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 180.0
+offset_right = 144.0
+offset_bottom = 229.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "The Team"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 223.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "
+[ Lead ]
+Mouse Potato Does Stuff
+
+[ Programming ]
+Codimon
+GalesyFailsy
+
+ [ 3D MODELS ]
+Dobert"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="return_credits" type="Button" parent="credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -82.0
+offset_right = 149.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "RETURN"
+
 [connection signal="button_down" from="VBoxContainer/Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="VBoxContainer/Leaderboard" to="." method="_on_leaderboard_button_down"]
 [connection signal="button_down" from="VBoxContainer/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="VBoxContainer/Credits" to="." method="_on_credits_button_down"]
 [connection signal="button_down" from="VBoxContainer/Exit All" to="." method="_on_exit_all_button_down"]
 [connection signal="pressed" from="VBoxContainer/Exit All" to="." method="exit_game"]
+[connection signal="button_down" from="credits/return_credits" to="." method="_on_return_credits_button_down"]
