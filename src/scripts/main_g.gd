@@ -11,6 +11,7 @@ const TargetPlane = Plane.PLANE_XZ
 @onready var game_menu: Control = $"CanvasLayer/Game Menu"
 
 const PLANT_TIME = 6.0
+var DECAYTIME = 20.0
 var plants: Dictionary[Vector3i, float] = {}
 
 enum TOOLS {
@@ -52,22 +53,22 @@ func _unhandled_input(_event: InputEvent) -> void:
 						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Dirt:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Soil)
-					elif farmland.get_cell_item(tile_target) == 2:
-						farmland.set_cell_item(tile_target, 1)
+					elif farmland.get_cell_item(tile_target) == BLOCKS.Water:
+						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
-							if farmland.get_cell_item(tile_target + side) == 3:
-								farmland.set_cell_item(tile_target + side, 1)
+							if farmland.get_cell_item(tile_target + side) == BLOCKS.Soil:
+								farmland.set_cell_item(tile_target + side, BLOCKS.Dirt)
 				1:  # Shovel
-					if farmland.get_cell_item(tile_target) == 6:
-						farmland.set_cell_item(tile_target, 1)
+					if farmland.get_cell_item(tile_target) == BLOCKS.Virus:
+						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 				2: # Hoe
-					if farmland.get_cell_item(tile_target) == 3:
-						farmland.set_cell_item(tile_target + Vector3i.UP, 4)
+					if farmland.get_cell_item(tile_target) == BLOCKS.Soil:
+						farmland.set_cell_item(tile_target + Vector3i.UP, BLOCKS.WheatStart)
 						plants[tile_target] = 0.0
 				3: # Collector
-					if farmland.get_cell_item(tile_target + Vector3i.UP) == 5:
+					if farmland.get_cell_item(tile_target + Vector3i.UP) == BLOCKS.WheatEnd:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
-						farmland.set_cell_item(tile_target, 1) 
+						farmland.set_cell_item(tile_target, BLOCKS.Dirt) 
 						plants.erase(tile_target)
 						game_menu.score += 1
 						game_menu.harvested += 1
@@ -79,9 +80,15 @@ func _process(delta: float) -> void:
 	
 	var cleanup = []
 	for p in plants.keys():
-		if plants.get(p) > PLANT_TIME:
-			farmland.set_cell_item(p + Vector3i.UP, 5)
-		plants[p] += delta
+		if plants.get(p) > DECAYTIME:
+			farmland.set_cell_item(p, BLOCKS.Virus)
+			farmland.set_cell_item(p + Vector3i.UP, -1)
+			cleanup.append(p)
+			DECAYTIME = 20 + (randf() * 5)
+		elif plants.get(p) > PLANT_TIME:
+			if !farmland.get_cell_item(p + Vector3i.UP) == BLOCKS.WheatEnd:
+				farmland.set_cell_item(p + Vector3i.UP, BLOCKS.WheatEnd)
+		plants[p] += delta 
 			#grow the plant 
 			
 	for c in cleanup:
