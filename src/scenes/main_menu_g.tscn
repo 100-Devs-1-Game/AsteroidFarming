@@ -1,19 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://u3v6d72num8e"]
+[gd_scene load_steps=4 format=3 uid="uid://dol0jgsija6cb"]
 
-[ext_resource type="Script" uid="uid://42c4by184h20" path="res://scenes/af_main_menu.gd" id="1_ocxlu"]
-[ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_v5bg0"]
-[ext_resource type="Theme" uid="uid://b678c7or5y245" path="res://assets/ol_mackepler_had_a_title.tres" id="3_ye6se"]
+[ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_6gt8m"]
+[ext_resource type="Script" uid="uid://c05e1ck60151k" path="res://scripts/main_menu_g.gd" id="2_4jjr4"]
+[ext_resource type="Theme" uid="uid://b678c7or5y245" path="res://assets/ol_mackepler_had_a_title.tres" id="3_lmrkb"]
 
-[node name="Main Menu" type="Control" node_paths=PackedStringArray("options_button")]
+[node name="Main Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_v5bg0")
-script = ExtResource("1_ocxlu")
-options_button = NodePath("VBoxContainer/Options")
+theme = ExtResource("1_6gt8m")
+script = ExtResource("2_4jjr4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -30,6 +29,7 @@ text = "Play"
 metadata/_edit_use_anchors_ = true
 
 [node name="Leaderboard" type="Button" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Leaderboard
@@ -37,6 +37,7 @@ text = "Leaderboard
 metadata/_edit_use_anchors_ = true
 
 [node name="Options" type="Button" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Options"
@@ -46,13 +47,6 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Credits"
-metadata/_edit_use_anchors_ = true
-
-[node name="Exit" type="Button" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-text = "Return"
 metadata/_edit_use_anchors_ = true
 
 [node name="Exit All" type="Button" parent="VBoxContainer"]
@@ -68,14 +62,14 @@ offset_left = 187.0
 offset_top = 34.0
 offset_right = 990.0
 offset_bottom = 195.0
-theme = ExtResource("3_ye6se")
+theme = ExtResource("3_lmrkb")
 text = "Asteroid Farming"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="button_down" from="VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="VBoxContainer/Leaderboard" to="." method="_on_leaderboard_button_down"]
+[connection signal="button_down" from="VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="VBoxContainer/Credits" to="." method="_on_credits_button_down"]
+[connection signal="button_down" from="VBoxContainer/Exit All" to="." method="_on_exit_all_button_down"]
 [connection signal="pressed" from="VBoxContainer/Exit All" to="." method="exit_game"]
