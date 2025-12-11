@@ -2,6 +2,8 @@ extends Node3D
 
 @onready var cam: Camera3D = $"camera pivot/cam"
 @onready var farmland: GridMap = $Farmland
+@onready var overlay: MeshInstance3D = $Farmland/overlay
+
 var active_tool = 0
 const TargetPlane = Plane.PLANE_XZ
 
@@ -12,16 +14,20 @@ const PLANT_TIME = 6.0
 var plants: Dictionary[Vector3i, float] = {}
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("click"):
-		#Step 1, get target tile. 
-		var tile_target = null
-		var mousepos = get_viewport().get_mouse_position()
-		var result = TargetPlane.intersects_ray(cam.project_ray_origin(mousepos), cam.project_ray_normal(mousepos))
-		if result:
-			result += Vector3.DOWN / 2
-			tile_target = farmland.local_to_map(farmland.to_local(result))
-			print(tile_target)
+	#Step 1, get target tile. 
+	var tile_target = null
+	var mousepos = get_viewport().get_mouse_position()
+	var result = TargetPlane.intersects_ray(cam.project_ray_origin(mousepos), cam.project_ray_normal(mousepos))
+	if result:
+		result += Vector3.DOWN / 2
+		tile_target = farmland.local_to_map(farmland.to_local(result))
 		#Step 2, apply tool effect to target tile
+	if tile_target and farmland.get_used_cells().has(tile_target):
+		var highlight = tile_target
+		if plants.has(tile_target):
+			highlight += Vector3i.UP
+		overlay.position = farmland.map_to_local(highlight)
+	if Input.is_action_just_pressed("click"):
 		if farmland.get_used_cells().has(tile_target):
 			match active_tool:
 				0: # Bucket

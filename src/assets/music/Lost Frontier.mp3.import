@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Lost Frontier.mp3-67d68cd55df78bf1ada4a09db3c
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

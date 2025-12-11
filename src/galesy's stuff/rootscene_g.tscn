@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4mpcr7a6pv11"]
+[gd_scene load_steps=4 format=3 uid="uid://4mpcr7a6pv11"]
 
 [ext_resource type="PackedScene" uid="uid://70ym23bjjyoh" path="res://galesy's stuff/main_g.tscn" id="1_bhpmy"]
 [ext_resource type="PackedScene" uid="uid://dol0jgsija6cb" path="res://galesy's stuff/main_menu_g.tscn" id="2_cfihd"]
+[ext_resource type="AudioStream" uid="uid://cut6x0jdy2dfd" path="res://assets/music/Lost Frontier.mp3" id="3_cfihd"]
 
 [node name="rootscene" type="Node"]
 
@@ -9,3 +10,7 @@
 visible = false
 
 [node name="Main Menu" parent="." instance=ExtResource("2_cfihd")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cfihd")
+autoplay = true

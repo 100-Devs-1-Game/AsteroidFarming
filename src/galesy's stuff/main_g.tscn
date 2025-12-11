@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://70ym23bjjyoh"]
+[gd_scene load_steps=8 format=3 uid="uid://70ym23bjjyoh"]
 
 [ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://galesy's stuff/main_g.gd" id="1_woer8"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_fcgjw"]
 [ext_resource type="PackedScene" uid="uid://u07ux4av6dcg" path="res://galesy's stuff/game_menu_g.tscn" id="3_woer8"]
 [ext_resource type="Script" uid="uid://bwlj0grhdgew4" path="res://galesy's stuff/camera_pivot.gd" id="4_fcgjw"]
 [ext_resource type="Environment" uid="uid://dol1vabg3lf3" path="res://assets/world_environment.tres" id="5_jc33t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jc33t"]
+size = Vector3(1.15, 1.15, 1.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2mt5"]
+transparency = 1
+albedo_color = Color(0.58260924, 1, 0.551535, 0.21176471)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_woer8")
@@ -16,6 +23,10 @@ cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(65531, 65531, 0, 65531, 65532, 0, 65531, 65533, 0, 65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65531, 2, 0, 65531, 3, 0, 65531, 4, 0, 65532, 65531, 0, 65532, 65532, 1, 65532, 65533, 1, 65532, 65534, 1, 65532, 65535, 1, 65532, 0, 1, 65532, 1, 1, 65532, 2, 1, 65532, 3, 1, 65532, 4, 0, 65533, 65531, 0, 65533, 65532, 1, 65533, 65533, 1, 65533, 65534, 1, 65533, 65535, 1, 65533, 0, 1, 65533, 1, 1, 65533, 2, 1, 65533, 3, 1, 65533, 4, 0, 65534, 65531, 0, 65534, 65532, 1, 65534, 65533, 1, 65534, 65534, 1, 65534, 65535, 1, 65534, 0, 1, 65534, 1, 1, 65534, 2, 1, 65534, 3, 1, 65534, 4, 0, 65535, 65531, 0, 65535, 65532, 1, 65535, 65533, 1, 65535, 65534, 1, 65535, 65535, 1, 65535, 0, 1, 65535, 1, 1, 65535, 2, 1, 65535, 3, 1, 65535, 4, 0, 0, 65531, 0, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 0, 1, 65531, 0, 1, 65532, 1, 1, 65533, 1, 1, 65534, 1, 1, 65535, 1, 1, 0, 1, 1, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 0, 2, 65531, 0, 2, 65532, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 2, 4, 0, 3, 65531, 0, 3, 65532, 1, 3, 65533, 1, 3, 65534, 1, 3, 65535, 1, 3, 0, 1, 3, 1, 1, 3, 2, 1, 3, 3, 1, 3, 4, 0, 4, 65531, 0, 4, 65532, 0, 4, 65533, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0)
 }
+
+[node name="overlay" type="MeshInstance3D" parent="Farmland"]
+mesh = SubResource("BoxMesh_jc33t")
+surface_material_override/0 = SubResource("StandardMaterial3D_w2mt5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
