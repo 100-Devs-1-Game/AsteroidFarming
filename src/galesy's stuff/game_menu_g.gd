@@ -7,15 +7,20 @@ var score: int = 0:
 var harvested: int = 0:
 	set(value):
 		harvested = value
-		$Sidebar/MarginContainer/VBoxContainer/harvest_count.text = "Score: " + str(value)
+		$Sidebar/MarginContainer/VBoxContainer/harvest_count.text = "Harvested: " + str(value)
 var lost: int = 0:
 	set(value):
 		lost = value
-		$Sidebar/MarginContainer/VBoxContainer/lost_count.text = "Score: " + str(value)
+		$Sidebar/MarginContainer/VBoxContainer/lost_count.text = "Lost: " + str(value)
 
 var tool: int: 
 	get(): return owner.active_tool
 	set(value): owner.active_tool = value
+
+func _ready() -> void:
+	score = 0
+	harvested = 0
+	lost = 0
 
 func _on_end_game_button_down() -> void:
 	pass # Replace with function body.

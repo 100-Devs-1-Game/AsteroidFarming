@@ -6,6 +6,7 @@ var active_tool = 0
 const TargetPlane = Plane.PLANE_XZ
 
 @onready var uilayer: CanvasLayer = $CanvasLayer
+@onready var game_menu: Control = $"CanvasLayer/Game Menu"
 
 const PLANT_TIME = 6.0
 var plants: Dictionary[Vector3i, float] = {}
@@ -46,23 +47,29 @@ func _unhandled_input(_event: InputEvent) -> void:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
 						farmland.set_cell_item(tile_target, 1) 
 						plants.erase(tile_target)
+						game_menu.score += 1
+						game_menu.harvested += 1
 	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("change_tool"):
 		active_tool = wrapi(active_tool + 1, 0, 4)
 	
+	var cleanup = []
 	for p in plants.keys():
 		if plants.get(p) > PLANT_TIME * 3:
 			farmland.set_cell_item(p + Vector3i.UP, -1)
 			farmland.set_cell_item(p, 6)
+			game_menu.lost += 1
+			cleanup.append(p)
 		else:
 			if plants.get(p) > PLANT_TIME:
 				farmland.set_cell_item(p + Vector3i.UP, 5)
 			plants[p] += delta
 			#grow the plant 
 			
-	
+	for c in cleanup:
+		plants.erase(c)
 	
 
 func toggle_pause():
