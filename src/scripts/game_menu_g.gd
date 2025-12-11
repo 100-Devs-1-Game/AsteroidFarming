@@ -1,5 +1,11 @@
 extends Control
 
+@onready var tool_buttons = {
+	0: $Hotbar/MarginContainer/VBoxContainer/tool_bucket,
+	1: $Hotbar/MarginContainer/VBoxContainer/tool_shovel, 
+	2: $Hotbar/MarginContainer/VBoxContainer/tool_hoe,
+	3: $Hotbar/MarginContainer/VBoxContainer/tool_collector
+}
 var score: int = 0:
 	set(value):
 		score = value
@@ -21,6 +27,13 @@ func _ready() -> void:
 	score = 0
 	harvested = 0
 	lost = 0
+
+func _process(_delta: float) -> void:
+	for b in tool_buttons.keys():
+		if b == tool:
+			tool_buttons.get(b).modulate = Color(1.0, 1.0, 1.0, 1.0)
+		else:
+			tool_buttons.get(b).modulate = Color(0.202, 0.202, 0.202, 1.0)
 
 func _on_end_game_button_down() -> void:
 	pass # Replace with function body.
