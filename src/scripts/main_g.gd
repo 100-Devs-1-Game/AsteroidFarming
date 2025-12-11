@@ -41,8 +41,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 		#Step 2, apply tool effect to target tile
 	if tile_target and farmland.get_used_cells().has(tile_target):
 		var highlight = tile_target
+		overlay.mesh.size.y = 1.15
 		if plants.has(tile_target):
 			highlight += Vector3i.UP
+			if plants.get(tile_target) > PLANT_TIME:
+				overlay.mesh.size.y = 2.15
 		overlay.position = farmland.map_to_local(highlight)
 	if Input.is_action_just_pressed("click"):
 		if farmland.get_used_cells().has(tile_target):
