@@ -108,13 +108,12 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ykc4"]
 albedo_color = Color(0, 0.850914, 0.431588, 1)
 albedo_texture = ExtResource("5_cxi7j")
-uv1_offset = Vector3(-0.53, -0.955, 0.485)
+uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_rwl44"]
 material = SubResource("StandardMaterial3D_7ykc4")
-size = Vector3(1, 2, 1)
 
 [sub_resource type="Image" id="Image_cxi7j"]
 data = {

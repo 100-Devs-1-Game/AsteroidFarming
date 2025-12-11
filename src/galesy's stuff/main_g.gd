@@ -13,6 +13,22 @@ const TargetPlane = Plane.PLANE_XZ
 const PLANT_TIME = 6.0
 var plants: Dictionary[Vector3i, float] = {}
 
+enum TOOLS {
+	Bucket = 0,
+	Shovel = 1,
+	Hoe = 2,
+	Collector = 3
+}
+enum BLOCKS {
+	Stone = 0,
+	Dirt = 1,
+	Water = 2,
+	Soil = 3,
+	WheatStart = 4,
+	WheatEnd = 5,
+	Virus = 6
+}
+
 func _unhandled_input(_event: InputEvent) -> void:
 	#Step 1, get target tile. 
 	var tile_target = null
@@ -31,11 +47,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if farmland.get_used_cells().has(tile_target):
 			match active_tool:
 				0: # Bucket
-					if farmland.get_cell_item(tile_target) == 1:
-						farmland.set_cell_item(tile_target, 2)
+					if farmland.get_cell_item(tile_target) == BLOCKS.Dirt or farmland.get_cell_item(tile_target) == BLOCKS.Soil:
+						farmland.set_cell_item(tile_target, BLOCKS.Water)
 						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
-							if farmland.get_cell_item(tile_target + side) == 1:
-								farmland.set_cell_item(tile_target + side, 3)
+							if farmland.get_cell_item(tile_target + side) == BLOCKS.Dirt:
+								farmland.set_cell_item(tile_target + side, BLOCKS.Soil)
 					elif farmland.get_cell_item(tile_target) == 2:
 						farmland.set_cell_item(tile_target, 1)
 						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
@@ -63,15 +79,9 @@ func _process(delta: float) -> void:
 	
 	var cleanup = []
 	for p in plants.keys():
-		if plants.get(p) > PLANT_TIME * 3:
-			farmland.set_cell_item(p + Vector3i.UP, -1)
-			farmland.set_cell_item(p, 6)
-			game_menu.lost += 1
-			cleanup.append(p)
-		else:
-			if plants.get(p) > PLANT_TIME:
-				farmland.set_cell_item(p + Vector3i.UP, 5)
-			plants[p] += delta
+		if plants.get(p) > PLANT_TIME:
+			farmland.set_cell_item(p + Vector3i.UP, 5)
+		plants[p] += delta
 			#grow the plant 
 			
 	for c in cleanup:
