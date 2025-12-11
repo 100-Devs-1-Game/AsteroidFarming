@@ -10,9 +10,7 @@ const TargetPlane = Plane.PLANE_XZ
 const PLANT_TIME = 6.0
 var plants: Dictionary[Vector3i, float] = {}
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("change_tool"):
-		active_tool = wrapi(active_tool + 1, 0, 4)
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click"):
 		#Step 1, get target tile. 
 		var tile_target = null
@@ -28,14 +26,19 @@ func _process(delta: float) -> void:
 				0: # Bucket
 					if farmland.get_cell_item(tile_target) == 1:
 						farmland.set_cell_item(tile_target, 2)
+						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
+							if farmland.get_cell_item(tile_target + side) == 1:
+								farmland.set_cell_item(tile_target + side, 3)
 					elif farmland.get_cell_item(tile_target) == 2:
 						farmland.set_cell_item(tile_target, 1)
+						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
+							if farmland.get_cell_item(tile_target + side) == 3:
+								farmland.set_cell_item(tile_target + side, 1)
 				1:  # Shovel
 					if farmland.get_cell_item(tile_target) == 6:
 						farmland.set_cell_item(tile_target, 1)
 				2: # Hoe
-					if farmland.get_cell_item(tile_target) == 1:
-						farmland.set_cell_item(tile_target, 3)
+					if farmland.get_cell_item(tile_target) == 3:
 						farmland.set_cell_item(tile_target + Vector3i.UP, 4)
 						plants[tile_target] = 0.0
 				3: # Collector
@@ -43,6 +46,11 @@ func _process(delta: float) -> void:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
 						farmland.set_cell_item(tile_target, 1) 
 						plants.erase(tile_target)
+	
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("change_tool"):
+		active_tool = wrapi(active_tool + 1, 0, 4)
 	
 	for p in plants.keys():
 		if plants.get(p) > PLANT_TIME * 3:

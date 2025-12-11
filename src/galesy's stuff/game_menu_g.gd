@@ -31,10 +31,10 @@ func _on_tool_bucket_button_down() -> void:
 	owner.active_tool = 0
 
 func _on_tool_shovel_button_down() -> void:
-	pass # Replace with function body.
+	owner.active_tool = 1
 
 func _on_tool_hoe_button_down() -> void:
-	pass # Replace with function body.
+	owner.active_tool = 2
 
 func _on_tool_collector_button_down() -> void:
-	pass # Replace with function body.
+	owner.active_tool = 3
