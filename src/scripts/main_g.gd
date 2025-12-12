@@ -88,6 +88,7 @@ func _process(delta: float) -> void:
 			farmland.set_cell_item(p + Vector3i.UP, -1)
 			cleanup.append(p)
 			DECAYTIME = 20 + (randf() * 5)
+			game_menu.lost += 1
 		elif plants.get(p) > PLANT_TIME:
 			if !farmland.get_cell_item(p + Vector3i.UP) == BLOCKS.WheatEnd:
 				farmland.set_cell_item(p + Vector3i.UP, BLOCKS.WheatEnd)
