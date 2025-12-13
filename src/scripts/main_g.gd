@@ -112,8 +112,11 @@ func _physics_process(_delta: float) -> void:
 			var neighbor := rnd_pos + side
 			if farmland.get_cell_item(neighbor) == BLOCKS.Dirt:
 				farmland.set_cell_item(neighbor, BLOCKS.Virus)
-			
-		
+				var above:= neighbor + Vector3i.UP
+				if farmland.get_cell_item(above):
+					farmland.set_cell_item(above, -1)
+					game_menu.lost += 1
+					plants.erase(above)
 
 
 func toggle_pause():
