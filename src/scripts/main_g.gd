@@ -1,5 +1,7 @@
 extends Node3D
 
+const SIDES = [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]
+
 @onready var cam: Camera3D = $"camera pivot/cam"
 @onready var farmland: GridMap = $Farmland
 @onready var overlay: MeshInstance3D = $Farmland/overlay
@@ -11,6 +13,7 @@ const TargetPlane = Plane.PLANE_XZ
 @onready var game_menu: Control = $"CanvasLayer/Game Menu"
 
 const PLANT_TIME = 6.0
+const VIRUS_SPREAD_CHANCE = 10.0
 var DECAYTIME = 20.0
 var plants: Dictionary[Vector3i, float] = {}
 
@@ -53,12 +56,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 				0: # Bucket
 					if farmland.get_cell_item(tile_target) == BLOCKS.Dirt or farmland.get_cell_item(tile_target) == BLOCKS.Soil:
 						farmland.set_cell_item(tile_target, BLOCKS.Water)
-						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
+						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Dirt:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Soil)
 					elif farmland.get_cell_item(tile_target) == BLOCKS.Water:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
-						for side in [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]:
+						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Soil:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Dirt)
 				1:  # Shovel
@@ -97,7 +100,22 @@ func _process(delta: float) -> void:
 			
 	for c in cleanup:
 		plants.erase(c)
-	
+
+
+func _physics_process(_delta: float) -> void:
+	var rnd_pos: Vector3i = farmland.get_used_cells().pick_random()
+	var block := farmland.get_cell_item(rnd_pos)
+	match block:
+		BLOCKS.Virus:
+			if randf() * 100 > VIRUS_SPREAD_CHANCE:
+				return 
+			var side: Vector3i = SIDES.pick_random()
+			var neighbor := rnd_pos + side
+			if farmland.get_cell_item(neighbor) == BLOCKS.Dirt:
+				farmland.set_cell_item(neighbor, BLOCKS.Virus)
+			
+		
+
 
 func toggle_pause():
 	visible = !is_processing()
