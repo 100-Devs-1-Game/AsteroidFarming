@@ -89,7 +89,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					if target_item == BLOCKS.Virus:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 				TOOLS.Hoe: # Hoe
-					if target_item == BLOCKS.Soil:
+					if target_item == BLOCKS.Soil and !plants.has(tile_target):
 						farmland.set_cell_item(tile_target + Vector3i.UP, BLOCKS.WheatStart)
 						plants[tile_target] = 0.0
 				TOOLS.Collector: # Collector
