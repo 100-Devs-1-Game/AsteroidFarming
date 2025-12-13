@@ -1,5 +1,7 @@
 extends Control
 
+@onready var main_menu: Control = $"../../../Main Menu"
+
 @onready var tool_buttons = {
 	0: $Hotbar/MarginContainer/VBoxContainer/tool_bucket,
 	1: $Hotbar/MarginContainer/VBoxContainer/tool_shovel, 
@@ -27,6 +29,7 @@ func _ready() -> void:
 	score = 0
 	harvested = 0
 	lost = 0
+	_on_h_slider_value_changed(0.5)
 
 func _process(_delta: float) -> void:
 	for b in tool_buttons.keys():
@@ -41,6 +44,7 @@ func _on_end_game_button_down() -> void:
 func _on_exit_to_menu_button_down() -> void:
 	get_parent().hide()
 	owner.hide()
+	main_menu.show()
 
 func _on_exit_to_desktop_button_down() -> void:
 	get_tree().quit()
@@ -56,3 +60,7 @@ func _on_tool_hoe_button_down() -> void:
 
 func _on_tool_collector_button_down() -> void:
 	owner.active_tool = 3
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(1, linear_to_db(value))
