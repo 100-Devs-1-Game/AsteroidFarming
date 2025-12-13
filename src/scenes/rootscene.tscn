@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://70ym23bjjyoh" path="res://scenes/main.tscn" id="1_bhpmy"]
 [ext_resource type="PackedScene" uid="uid://dol0jgsija6cb" path="res://scenes/main_menu.tscn" id="2_cfihd"]
-[ext_resource type="AudioStream" uid="uid://cut6x0jdy2dfd" path="res://assets/music/Lost Frontier.mp3" id="3_cfihd"]
+[ext_resource type="AudioStream" uid="uid://2gc4uxn57i0t" path="res://assets/music/Asteroid farming_.mp3" id="3_b286l"]
 
 [node name="rootscene" type="Node"]
 
@@ -12,5 +12,5 @@ visible = false
 [node name="Main Menu" parent="." instance=ExtResource("2_cfihd")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_cfihd")
+stream = ExtResource("3_b286l")
 autoplay = true

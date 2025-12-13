@@ -63,7 +63,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				if target_item == BLOCKS.Virus:
 					color = Color.GREEN
 			TOOLS.Hoe:
-				if target_item == BLOCKS.Soil:
+				if target_item == BLOCKS.Soil and !plants.has(tile_target):
 					color = Color.GREEN
 			TOOLS.Collector:
 				if plants.has(tile_target) and plants.get(tile_target) > PLANT_TIME:
