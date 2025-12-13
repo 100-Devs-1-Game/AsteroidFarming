@@ -6,7 +6,6 @@ const SIDES = [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]
 @onready var farmland: GridMap = $Farmland
 @onready var overlay: MeshInstance3D = $Farmland/overlay
 
-var active_tool = 0
 const TargetPlane = Plane.PLANE_XZ
 
 @onready var uilayer: CanvasLayer = $CanvasLayer
@@ -23,6 +22,7 @@ enum TOOLS {
 	Hoe = 2,
 	Collector = 3
 }
+var active_tool: TOOLS = TOOLS.Bucket
 enum BLOCKS {
 	Stone = 0,
 	Dirt = 1,
@@ -38,6 +38,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	var tile_target = null
 	var mousepos = get_viewport().get_mouse_position()
 	var result = TargetPlane.intersects_ray(cam.project_ray_origin(mousepos), cam.project_ray_normal(mousepos))
+	var target_item = -1
 	if result:
 		result += Vector3.DOWN / 2
 		tile_target = farmland.local_to_map(farmland.to_local(result))
@@ -50,28 +51,48 @@ func _unhandled_input(_event: InputEvent) -> void:
 			if plants.get(tile_target) > PLANT_TIME:
 				overlay.mesh.size.y = 2.15
 		overlay.position = farmland.map_to_local(highlight)
+		
+		var color = Color.RED
+		target_item = farmland.get_cell_item(tile_target)
+		
+		match active_tool:
+			TOOLS.Bucket:
+				if target_item == BLOCKS.Dirt or target_item == BLOCKS.Soil or target_item == BLOCKS.Water:
+					color = Color.GREEN
+			TOOLS.Shovel:
+				if target_item == BLOCKS.Virus:
+					color = Color.GREEN
+			TOOLS.Hoe:
+				if target_item == BLOCKS.Soil:
+					color = Color.GREEN
+			TOOLS.Collector:
+				if plants.has(tile_target) and plants.get(tile_target) > PLANT_TIME:
+					color = Color.GREEN
+		color.a = 0.2
+		overlay.mesh.surface_get_material(0).set("albedo_color", color)
+		
 	if Input.is_action_just_pressed("click"):
-		if farmland.get_used_cells().has(tile_target):
+		if farmland.get_used_cells().has(tile_target) and target_item != -1:
 			match active_tool:
-				0: # Bucket
-					if farmland.get_cell_item(tile_target) == BLOCKS.Dirt or farmland.get_cell_item(tile_target) == BLOCKS.Soil:
+				TOOLS.Bucket: # Bucket
+					if target_item == BLOCKS.Dirt or target_item == BLOCKS.Soil:
 						farmland.set_cell_item(tile_target, BLOCKS.Water)
 						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Dirt:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Soil)
-					elif farmland.get_cell_item(tile_target) == BLOCKS.Water:
+					elif target_item == BLOCKS.Water:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Soil:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Dirt)
-				1:  # Shovel
-					if farmland.get_cell_item(tile_target) == BLOCKS.Virus:
+				TOOLS.Shovel:  # Shovel
+					if target_item == BLOCKS.Virus:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
-				2: # Hoe
-					if farmland.get_cell_item(tile_target) == BLOCKS.Soil:
+				TOOLS.Hoe: # Hoe
+					if target_item == BLOCKS.Soil:
 						farmland.set_cell_item(tile_target + Vector3i.UP, BLOCKS.WheatStart)
 						plants[tile_target] = 0.0
-				3: # Collector
+				TOOLS.Collector: # Collector
 					if farmland.get_cell_item(tile_target + Vector3i.UP) == BLOCKS.WheatEnd:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt) 
