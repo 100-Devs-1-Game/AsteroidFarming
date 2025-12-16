@@ -39,11 +39,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 	var mousepos = get_viewport().get_mouse_position()
 	var result = TargetPlane.intersects_ray(cam.project_ray_origin(mousepos), cam.project_ray_normal(mousepos))
 	var target_item = -1
-	if result:
+	if result != null:
 		result += Vector3.DOWN / 2
 		tile_target = farmland.local_to_map(farmland.to_local(result))
 		#Step 2, apply tool effect to target tile
-	if tile_target and farmland.get_used_cells().has(tile_target):
+	if tile_target != null and farmland.get_used_cells().has(tile_target):
 		var highlight = tile_target
 		overlay.mesh.size.y = 1.15
 		if plants.has(tile_target):
