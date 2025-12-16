@@ -1,25 +1,29 @@
 extends Control
 
-@onready var main_menu: Control = $"../../../Main Menu"
+@onready var main_menu: Control = get_tree().current_scene.get_node("Main Menu")
+@onready var score_label: Label = %Score
+@onready var harvest_count_label: Label = %Harvest_count
+@onready var lost_count_label: Label = %Lost_count
 
 @onready var tool_buttons = {
-	0: $Hotbar/MarginContainer/VBoxContainer/tool_bucket,
-	1: $Hotbar/MarginContainer/VBoxContainer/tool_shovel, 
-	2: $Hotbar/MarginContainer/VBoxContainer/tool_hoe,
-	3: $Hotbar/MarginContainer/VBoxContainer/tool_collector
+	0: %tool_bucket,
+	1: %tool_shovel, 
+	2: %tool_hoe,
+	3: %tool_collector
 }
+
 var score: int = 0:
 	set(value):
 		score = value
-		$Sidebar/MarginContainer/VBoxContainer/score.text = "Score: " + str(value)
+		score_label.text = "Score: " + str(value)
 var harvested: int = 0:
 	set(value):
 		harvested = value
-		$Sidebar/MarginContainer/VBoxContainer/harvest_count.text = "Harvested: " + str(value)
+		harvest_count_label.text = "Harvested: " + str(value)
 var lost: int = 0:
 	set(value):
 		lost = value
-		$Sidebar/MarginContainer/VBoxContainer/lost_count.text = "Lost: " + str(value)
+		lost_count_label.text = "Lost: " + str(value)
 
 var tool: int: 
 	get(): return owner.active_tool

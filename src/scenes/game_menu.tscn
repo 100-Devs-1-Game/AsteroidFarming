@@ -59,13 +59,16 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 
-[node name="score" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="harvest_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Harvest_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="lost_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Lost_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="End Game" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
@@ -107,18 +110,22 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="tool_bucket" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("6_tox7i")
 
 [node name="tool_shovel" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_ye8xr")
 
 [node name="tool_hoe" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_q233v")
 
 [node name="tool_collector" type="TextureButton" parent="Hotbar/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("8_laclm")
 
