@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dol0jgsija6cb"]
 
 [ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_6gt8m"]
-[ext_resource type="Script" uid="uid://c05e1ck60151k" path="res://scripts/main_menu_g.gd" id="2_4jjr4"]
+[ext_resource type="Script" uid="uid://c05e1ck60151k" path="res://scripts/main_menu.gd" id="2_4jjr4"]
 [ext_resource type="Theme" uid="uid://b678c7or5y245" path="res://assets/ol_mackepler_had_a_title.tres" id="3_lmrkb"]
 
 [node name="Main Menu" type="Control"]

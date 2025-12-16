@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://70ym23bjjyoh"]
 
-[ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main_g.gd" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_o6xl0"]
 [ext_resource type="Script" uid="uid://dxx4v6vkgfpyi" path="res://scenes/farmland_terrain_tool.gd" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://u07ux4av6dcg" path="res://scenes/game_menu.tscn" id="3_tipki"]

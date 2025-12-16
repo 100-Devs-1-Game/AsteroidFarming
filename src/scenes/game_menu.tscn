@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://u07ux4av6dcg"]
 
 [ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_0b27c"]
-[ext_resource type="Script" uid="uid://2wlxi163ghg8" path="res://scripts/game_menu_g.gd" id="1_8lrby"]
+[ext_resource type="Script" uid="uid://2wlxi163ghg8" path="res://scripts/game_menu.gd" id="1_8lrby"]
 [ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="2_p4b25"]
 [ext_resource type="Texture2D" uid="uid://dgk6xtqgni6vv" path="res://assets/art/shovel_icon.png" id="5_ye8xr"]
 [ext_resource type="Texture2D" uid="uid://b7fhm22gog55y" path="res://assets/art/bucket_icon.png" id="6_tox7i"]
