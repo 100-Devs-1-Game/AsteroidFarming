@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://70ym23bjjyoh"]
+[gd_scene load_steps=12 format=3 uid="uid://70ym23bjjyoh"]
 
 [ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_o6xl0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Environment" uid="uid://dol1vabg3lf3" path="res://assets/world_environment.tres" id="5_choun"]
 [ext_resource type="PackedScene" uid="uid://b30mmydhqq4xf" path="res://scenes/shop_ui.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://1hnrcibjxx0j" path="res://scenes/starfield.tscn" id="6_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://g82bjbhulk4f" path="res://scenes/space_ship.tscn" id="9_85g3d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2mt5"]
 transparency = 1
@@ -40,6 +41,31 @@ visible = false
 [node name="ShopUI" parent="CanvasLayer" instance=ExtResource("5_tipki")]
 visible = false
 
+[node name="SpaceShipStuff" type="Node3D" parent="."]
+
+[node name="Spaceship" parent="SpaceShipStuff" instance=ExtResource("9_85g3d")]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6.918195, 2.1641774, 1.8044796)
+visible = false
+
+[node name="Spaceship Spawn" type="Marker3D" parent="SpaceShipStuff"]
+unique_name_in_owner = true
+transform = Transform3D(-0.5901971, 0, 0.80725914, 0, 1, 0, -0.80725914, 0, -0.5901971, -349.2934, 26.358707, 1.8044796)
+
+[node name="Spaceship Despawn" type="Marker3D" parent="SpaceShipStuff"]
+unique_name_in_owner = true
+transform = Transform3D(-0.5901971, 0, 0.80725914, 0, 1, 0, -0.80725914, 0, -0.5901971, 260.42914, 26.358707, 1.8044796)
+
+[node name="Spaceship Docking" type="Marker3D" parent="SpaceShipStuff"]
+unique_name_in_owner = true
+transform = Transform3D(-0.5901971, 0, 0.80725914, 0, 1, 0, -0.80725914, 0, -0.5901971, -6.918195, 2.1641774, 1.8044796)
+
+[node name="Spaceship Cooldown" type="Timer" parent="SpaceShipStuff"]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [node name="camera pivot" type="Node3D" parent="."]
 script = ExtResource("4_85g3d")
 
@@ -55,3 +81,6 @@ environment = ExtResource("5_choun")
 
 [node name="Starfield" parent="." instance=ExtResource("6_ya4ey")]
 lifetime = 100000.0
+
+[connection signal="closed" from="CanvasLayer/ShopUI" to="." method="_on_shop_ui_closed"]
+[connection signal="timeout" from="SpaceShipStuff/Spaceship Cooldown" to="." method="_on_spaceship_cooldown_timeout"]

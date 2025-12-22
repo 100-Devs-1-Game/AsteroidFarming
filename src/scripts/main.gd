@@ -1,28 +1,11 @@
 extends Node3D
 
-const SIDES = [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]
-
-@onready var cam: Camera3D = $"camera pivot/cam"
-@onready var farmland: GridMap = $Farmland
-@onready var overlay: MeshInstance3D = $Farmland/overlay
-
-const TargetPlane = Plane.PLANE_XZ
-
-@onready var uilayer: CanvasLayer = $CanvasLayer
-@onready var game_menu: Control = $"CanvasLayer/Game Menu"
-
-const PLANT_TIME = 6.0
-const VIRUS_SPREAD_CHANCE = 10.0
-var DECAYTIME = 20.0
-var plants: Dictionary[Vector3i, float] = {}
-
 enum TOOLS {
 	Bucket = 0,
 	Shovel = 1,
 	Hoe = 2,
 	Collector = 3
 }
-var active_tool: TOOLS = TOOLS.Bucket
 enum BLOCKS {
 	Stone = 0,
 	Dirt = 1,
@@ -32,6 +15,29 @@ enum BLOCKS {
 	WheatEnd = 5,
 	Virus = 6
 }
+
+const SIDES = [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]
+const TargetPlane = Plane.PLANE_XZ
+const PLANT_TIME = 6.0
+const VIRUS_SPREAD_CHANCE = 10.0
+
+@onready var cam: Camera3D = $"camera pivot/cam"
+@onready var farmland: GridMap = $Farmland
+@onready var overlay: MeshInstance3D = $Farmland/overlay
+@onready var uilayer: CanvasLayer = $CanvasLayer
+@onready var game_menu: Control = $"CanvasLayer/Game Menu"
+@onready var spaceship: Node3D = %Spaceship
+@onready var spaceship_spawn: Marker3D = %"Spaceship Spawn"
+@onready var spaceship_despawn: Marker3D = %"Spaceship Despawn"
+@onready var spaceship_docking: Marker3D = %"Spaceship Docking"
+@onready var spaceship_cooldown: Timer = %"Spaceship Cooldown"
+@onready var shop: Shop = $CanvasLayer/ShopUI
+
+var DECAYTIME = 20.0
+var plants: Dictionary[Vector3i, float] = {}
+var active_tool: TOOLS = TOOLS.Bucket
+var spaceship_tween: Tween
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 	#Step 1, get target tile. 
@@ -144,3 +150,17 @@ func toggle_pause():
 	visible = !is_processing()
 	uilayer.visible = !is_processing()
 	set_process(!is_processing())
+
+
+func _on_spaceship_cooldown_timeout() -> void:
+	spaceship.position = spaceship_spawn.position
+	spaceship.show()
+	spaceship_tween= create_tween()
+	spaceship_tween.tween_property(spaceship, "position", spaceship_docking.position, 5.0).set_ease(Tween.EASE_OUT)
+	spaceship_tween.tween_callback(shop.open)
+
+
+func _on_shop_ui_closed() -> void:
+	spaceship_tween= create_tween()
+	spaceship_tween.tween_property(spaceship, "position", spaceship_despawn.position, 10.0).set_ease(Tween.EASE_IN)
+	spaceship_tween.tween_callback(spaceship_cooldown.start)
