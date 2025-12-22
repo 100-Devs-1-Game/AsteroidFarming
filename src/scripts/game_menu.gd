@@ -4,6 +4,8 @@ extends Control
 @onready var score_label: Label = %Score
 @onready var harvest_count_label: Label = %Harvest_count
 @onready var lost_count_label: Label = %Lost_count
+@onready var credits_label: Label = %Credits
+@onready var seeds_label: Label = %Seeds
 
 @onready var tool_buttons = {
 	0: %tool_bucket,
@@ -24,6 +26,17 @@ var lost: int = 0:
 	set(value):
 		lost = value
 		lost_count_label.text = "Lost: " + str(value)
+var credits: int= 0:
+	set(value):
+		credits= value
+		credits_label.text= "Credits: " + str(credits)
+		EventManager.credits_updated.emit(credits)
+var seeds: int= 0:
+	set(value):
+		seeds= value
+		seeds_label.text= "Seeds: " + str(seeds)
+		EventManager.seeds_updated.emit(seeds)
+
 
 var tool: int: 
 	get(): return owner.active_tool
@@ -33,7 +46,14 @@ func _ready() -> void:
 	score = 0
 	harvested = 0
 	lost = 0
+	credits = 0
+	seeds = 0
 	_on_h_slider_value_changed(0.5)
+	EventManager.bought_seeds.connect(func(amount: int):
+		seeds+= amount
+		credits-= amount * Shop.SEED_PRICE
+		harvested= 0
+	)
 
 func _process(_delta: float) -> void:
 	for b in tool_buttons.keys():

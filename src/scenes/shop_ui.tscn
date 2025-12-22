@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://b30mmydhqq4xf"]
+
+[ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_fs6yy"]
+[ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scenes/shop_ui.gd" id="1_oixfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixfk"]
+bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.50980395)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oixfk"]
+font = ExtResource("1_fs6yy")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_18xnp"]
+font = ExtResource("1_fs6yy")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_crtus"]
+font = ExtResource("1_fs6yy")
+font_size = 32
+font_color = Color(0.043137256, 0.8627451, 0.4509804, 1)
+
+[node name="ShopUI" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -20.0
+offset_right = 250.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oixfk")
+script = ExtResource("1_oixfk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SHOP"
+label_settings = SubResource("LabelSettings_oixfk")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_18xnp")
+
+[node name="Label Credits" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_18xnp")
+horizontal_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Seeds"
+label_settings = SubResource("LabelSettings_18xnp")
+
+[node name="Label Seeds" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_18xnp")
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "BUY ( $10 )"
+label_settings = SubResource("LabelSettings_18xnp")
+
+[node name="Button Buy1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fs6yy")
+text = "1 x"
+
+[node name="Button Buy5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fs6yy")
+text = "5 x"
+
+[node name="Button Buy10" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fs6yy")
+text = "10 x"
+
+[node name="Sold" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+text = "SOLD 44x"
+label_settings = SubResource("LabelSettings_crtus")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy1" to="." method="buy" binds= [1]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy5" to="." method="buy" binds= [5]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy10" to="." method="buy" binds= [10]]

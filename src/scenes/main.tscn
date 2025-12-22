@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://70ym23bjjyoh"]
+[gd_scene load_steps=11 format=3 uid="uid://70ym23bjjyoh"]
 
 [ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_o6xl0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://u07ux4av6dcg" path="res://scenes/game_menu.tscn" id="3_tipki"]
 [ext_resource type="Script" uid="uid://bwlj0grhdgew4" path="res://scripts/camera_pivot.gd" id="4_85g3d"]
 [ext_resource type="Environment" uid="uid://dol1vabg3lf3" path="res://assets/world_environment.tres" id="5_choun"]
+[ext_resource type="PackedScene" uid="uid://b30mmydhqq4xf" path="res://scenes/shop_ui.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://1hnrcibjxx0j" path="res://scenes/starfield.tscn" id="6_ya4ey"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2mt5"]
@@ -35,6 +36,9 @@ mesh = SubResource("BoxMesh_jc33t")
 visible = false
 
 [node name="Game Menu" parent="CanvasLayer" instance=ExtResource("3_tipki")]
+
+[node name="ShopUI" parent="CanvasLayer" instance=ExtResource("5_tipki")]
+visible = false
 
 [node name="camera pivot" type="Node3D" parent="."]
 script = ExtResource("4_85g3d")

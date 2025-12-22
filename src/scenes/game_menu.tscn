@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://u07ux4av6dcg"]
+[gd_scene load_steps=11 format=3 uid="uid://u07ux4av6dcg"]
 
 [ext_resource type="Theme" uid="uid://bdwnun1mglwrw" path="res://assets/ol_mackepler_had_a_farm.tres" id="1_0b27c"]
 [ext_resource type="Script" uid="uid://2wlxi163ghg8" path="res://scripts/game_menu.gd" id="1_8lrby"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://b7fhm22gog55y" path="res://assets/art/bucket_icon.png" id="6_tox7i"]
 [ext_resource type="Texture2D" uid="uid://d0kdng5s0glbr" path="res://assets/art/hoe_icon.png" id="7_q233v"]
 [ext_resource type="Texture2D" uid="uid://vfaiwwpl7ne4" path="res://assets/art/collector_icon.png" id="8_laclm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b27c"]
+bg_color = Color(0.3372549, 0.3372549, 0.3372549, 0.6627451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0b27c"]
+font = ExtResource("2_p4b25")
+font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20eqh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -36,6 +43,7 @@ script = ExtResource("1_8lrby")
 layout_mode = 1
 offset_right = 125.0
 offset_bottom = 362.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0b27c")
 
 [node name="MarginContainer" type="MarginContainer" parent="Sidebar"]
 layout_mode = 2
@@ -46,48 +54,81 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Sidebar/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Sidebar/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Music Volume"
 
-[node name="HSlider" type="HSlider" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
-max_value = 1.0
-step = 0.1
-value = 0.5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Score" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
+label_settings = SubResource("LabelSettings_0b27c")
 
-[node name="Harvest_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Credits" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
+label_settings = SubResource("LabelSettings_0b27c")
 
-[node name="Lost_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Seeds" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
+label_settings = SubResource("LabelSettings_0b27c")
 
-[node name="End Game" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Harvest_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_0b27c")
+
+[node name="Lost_count" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_0b27c")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="End Game" type="Button" parent="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p4b25")
 text = "Complete"
 
-[node name="Exit to Menu" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Exit to Menu" type="Button" parent="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p4b25")
 text = "Exit to Menu"
 
-[node name="Exit to Desktop" type="Button" parent="Sidebar/MarginContainer/VBoxContainer"]
+[node name="Exit to Desktop" type="Button" parent="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p4b25")
 text = "Exit to Desktop"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Sidebar/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Sidebar/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.5
 
 [node name="Hotbar" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -129,10 +170,10 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("8_laclm")
 
-[connection signal="value_changed" from="Sidebar/MarginContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/End Game" to="." method="_on_end_game_button_down"]
-[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/Exit to Menu" to="." method="_on_exit_to_menu_button_down"]
-[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/Exit to Desktop" to="." method="_on_exit_to_desktop_button_down"]
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2/End Game" to="." method="_on_end_game_button_down"]
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2/Exit to Menu" to="." method="_on_exit_to_menu_button_down"]
+[connection signal="button_down" from="Sidebar/MarginContainer/VBoxContainer/VBoxContainer2/Exit to Desktop" to="." method="_on_exit_to_desktop_button_down"]
+[connection signal="value_changed" from="Sidebar/MarginContainer/VBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_bucket" to="." method="_on_tool_bucket_button_down"]
 [connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_shovel" to="." method="_on_tool_shovel_button_down"]
 [connection signal="button_down" from="Hotbar/MarginContainer/VBoxContainer/tool_hoe" to="." method="_on_tool_hoe_button_down"]
