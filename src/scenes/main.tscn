@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_o6xl0"]
-[ext_resource type="Script" uid="uid://dxx4v6vkgfpyi" path="res://scenes/farmland_terrain_tool.gd" id="3_o6xl0"]
+[ext_resource type="Script" uid="uid://dxx4v6vkgfpyi" path="res://scripts/farmland_terrain_tool.gd" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://u07ux4av6dcg" path="res://scenes/game_menu.tscn" id="3_tipki"]
 [ext_resource type="Script" uid="uid://bwlj0grhdgew4" path="res://scripts/camera_pivot.gd" id="4_85g3d"]
 [ext_resource type="Environment" uid="uid://dol1vabg3lf3" path="res://assets/world_environment.tres" id="5_choun"]
