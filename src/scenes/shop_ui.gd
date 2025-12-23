@@ -30,6 +30,7 @@ func buy(amount: int):
 
 
 func on_credits_updated(credits: int):
+	label_credits.text = str(credits)
 	button_buy_1.disabled = credits < SEED_PRICE
 	button_buy_5.disabled = credits < 5 * SEED_PRICE
 	button_buy_10.disabled = credits < 10 * SEED_PRICE

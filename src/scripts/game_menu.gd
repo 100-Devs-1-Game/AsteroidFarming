@@ -1,3 +1,4 @@
+class_name GameMenu
 extends Control
 
 @onready var main_menu: Control = get_tree().current_scene.get_node("Main Menu")
@@ -26,28 +27,28 @@ var lost: int = 0:
 	set(value):
 		lost = value
 		lost_count_label.text = "Lost: " + str(value)
-var credits: int= 0:
+var credits: int = 0:
 	set(value):
 		credits= value
 		credits_label.text= "Credits: " + str(credits)
 		EventManager.credits_updated.emit(credits)
-var seeds: int= 0:
+var seeds: int = 0:
 	set(value):
 		seeds= value
 		seeds_label.text= "Seeds: " + str(seeds)
 		EventManager.seeds_updated.emit(seeds)
 
-
 var tool: int: 
-	get(): return owner.active_tool
 	set(value): owner.active_tool = value
+	get(): return owner.active_tool
+
 
 func _ready() -> void:
 	score = 0
 	harvested = 0
 	lost = 0
 	credits = 0
-	seeds = 0
+	seeds = 5
 	_on_h_slider_value_changed(0.5)
 	EventManager.bought_seeds.connect(func(amount: int):
 		seeds+= amount

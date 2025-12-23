@@ -25,7 +25,7 @@ const VIRUS_SPREAD_CHANCE = 10.0
 @onready var farmland: GridMap = $Farmland
 @onready var overlay: MeshInstance3D = $Farmland/overlay
 @onready var uilayer: CanvasLayer = $CanvasLayer
-@onready var game_menu: Control = $"CanvasLayer/Game Menu"
+@onready var game_menu: GameMenu = $"CanvasLayer/Game Menu"
 @onready var spaceship: Node3D = %Spaceship
 @onready var spaceship_spawn: Marker3D = %"Spaceship Spawn"
 @onready var spaceship_despawn: Marker3D = %"Spaceship Despawn"
@@ -37,6 +37,15 @@ var DECAYTIME = 20.0
 var plants: Dictionary[Vector3i, float] = {}
 var active_tool: TOOLS = TOOLS.Bucket
 var spaceship_tween: Tween
+
+
+func _ready() -> void:
+	EventManager.sell_harvest.connect(func():
+		var harvested := game_menu.harvested 
+		game_menu.credits += harvested
+		game_menu.harvested = 0
+		EventManager.sold_harvest.emit(harvested)
+	)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -69,7 +78,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				if target_item == BLOCKS.Virus:
 					color = Color.GREEN
 			TOOLS.Hoe:
-				if target_item == BLOCKS.Soil and !plants.has(tile_target):
+				if target_item == BLOCKS.Soil and !plants.has(tile_target) and game_menu.seeds > 0:
 					color = Color.GREEN
 			TOOLS.Collector:
 				if plants.has(tile_target) and plants.get(tile_target) > PLANT_TIME:
@@ -95,9 +104,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 					if target_item == BLOCKS.Virus:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 				TOOLS.Hoe: # Hoe
-					if target_item == BLOCKS.Soil and !plants.has(tile_target):
+					if target_item == BLOCKS.Soil and !plants.has(tile_target) and game_menu.seeds > 0:
 						farmland.set_cell_item(tile_target + Vector3i.UP, BLOCKS.WheatStart)
 						plants[tile_target] = 0.0
+						game_menu.seeds -= 1
 				TOOLS.Collector: # Collector
 					if farmland.get_cell_item(tile_target + Vector3i.UP) == BLOCKS.WheatEnd:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
@@ -105,6 +115,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 						plants.erase(tile_target)
 						game_menu.score += 1
 						game_menu.harvested += 1
+						game_menu.seeds += 1
 	
 
 func _process(delta: float) -> void:
