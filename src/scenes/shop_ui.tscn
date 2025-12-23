@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b30mmydhqq4xf"]
+[gd_scene load_steps=9 format=3 uid="uid://b30mmydhqq4xf"]
 
 [ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_fs6yy"]
 [ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scenes/shop_ui.gd" id="1_oixfk"]
@@ -13,6 +13,11 @@ font_size = 48
 [sub_resource type="LabelSettings" id="LabelSettings_18xnp"]
 font = ExtResource("1_fs6yy")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_epbsd"]
+font = ExtResource("1_fs6yy")
+font_size = 32
+font_color = Color(0.84327686, 0.2717907, 0.36008853, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18xnp"]
 content_margin_left = 4.0
@@ -79,6 +84,24 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_18xnp")
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "TAXES"
+label_settings = SubResource("LabelSettings_18xnp")
+
+[node name="Label Taxes" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_epbsd")
 horizontal_alignment = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

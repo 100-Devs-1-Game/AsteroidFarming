@@ -37,7 +37,7 @@ var DECAYTIME = 20.0
 var plants: Dictionary[Vector3i, float] = {}
 var active_tool: TOOLS = TOOLS.Bucket
 var spaceship_tween: Tween
-
+var taxes := 1
 
 func _ready() -> void:
 	EventManager.sell_harvest.connect(func():
@@ -45,6 +45,13 @@ func _ready() -> void:
 		game_menu.credits += harvested
 		game_menu.harvested = 0
 		EventManager.sold_harvest.emit(harvested)
+	)
+	EventManager.pay_taxes.connect(func():
+		game_menu.credits -= taxes
+		if game_menu.credits < 0:
+			game_over()
+		EventManager.update_taxes.emit(taxes)
+		taxes += 1
 	)
 
 
@@ -162,6 +169,9 @@ func toggle_pause():
 	uilayer.visible = !is_processing()
 	set_process(!is_processing())
 
+
+func game_over():
+	get_tree().change_scene_to_packed(load("uid://btagksi1j8xfe"))
 
 func _on_spaceship_cooldown_timeout() -> void:
 	spaceship.position = spaceship_spawn.position
