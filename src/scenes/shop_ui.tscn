@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b30mmydhqq4xf"]
+[gd_scene load_steps=8 format=3 uid="uid://b30mmydhqq4xf"]
 
 [ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_fs6yy"]
 [ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scenes/shop_ui.gd" id="1_oixfk"]
@@ -14,13 +14,24 @@ font_size = 48
 font = ExtResource("1_fs6yy")
 font_size = 32
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18xnp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="LabelSettings" id="LabelSettings_crtus"]
 font = ExtResource("1_fs6yy")
 font_size = 32
 font_color = Color(0.043137256, 0.8627451, 0.4509804, 1)
 
 [node name="ShopUI" type="PanelContainer"]
-custom_minimum_size = Vector2(500, 500)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -44,7 +55,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -88,42 +99,23 @@ text = "0"
 label_settings = SubResource("LabelSettings_18xnp")
 horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "BUY ( $10 )"
-label_settings = SubResource("LabelSettings_18xnp")
-
-[node name="Button Buy1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button Buy" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(320, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.79607844, 0, 0.050980393, 0.5019608)
 theme_override_fonts/font = ExtResource("1_fs6yy")
-text = "1 x"
-
-[node name="Button Buy5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fs6yy")
-text = "5 x"
-
-[node name="Button Buy10" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fs6yy")
-text = "10 x"
+theme_override_font_sizes/font_size = 32
+theme_override_styles/disabled = SubResource("StyleBoxFlat_18xnp")
+text = "BUY SEED FOR 
+10 CREDITS"
 
 [node name="Sold" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
-text = "SOLD 44x"
 label_settings = SubResource("LabelSettings_crtus")
 horizontal_alignment = 1
 
@@ -131,10 +123,10 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("1_fs6yy")
+theme_override_font_sizes/font_size = 24
 text = "CLOSE"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy1" to="." method="buy" binds= [1]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy5" to="." method="buy" binds= [5]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button Buy10" to="." method="buy" binds= [10]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button Buy" to="." method="buy" binds= [1]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button Close" to="." method="_on_button_close_pressed"]

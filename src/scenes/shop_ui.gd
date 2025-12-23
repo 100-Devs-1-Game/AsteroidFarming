@@ -7,9 +7,7 @@ const SEED_PRICE= 10
 
 @onready var label_credits: Label = %"Label Credits"
 @onready var label_seeds: Label = %"Label Seeds"
-@onready var button_buy_1: Button = %"Button Buy1"
-@onready var button_buy_5: Button = %"Button Buy5"
-@onready var button_buy_10: Button = %"Button Buy10"
+@onready var button_buy: Button = %"Button Buy"
 @onready var label_sold: Label = %Sold
 
 
@@ -31,9 +29,7 @@ func buy(amount: int):
 
 func on_credits_updated(credits: int):
 	label_credits.text = str(credits)
-	button_buy_1.disabled = credits < SEED_PRICE
-	button_buy_5.disabled = credits < 5 * SEED_PRICE
-	button_buy_10.disabled = credits < 10 * SEED_PRICE
+	button_buy.disabled = credits < SEED_PRICE
 
 
 func on_seeds_updated(seeds: int):
