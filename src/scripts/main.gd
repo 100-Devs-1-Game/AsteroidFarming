@@ -182,6 +182,7 @@ func _on_spaceship_cooldown_timeout() -> void:
 
 
 func _on_shop_ui_closed() -> void:
+	spaceship_cooldown.wait_time += 5
 	spaceship_tween= create_tween()
 	spaceship_tween.tween_property(spaceship, "position", spaceship_despawn.position, 10.0).set_ease(Tween.EASE_IN)
 	spaceship_tween.tween_callback(spaceship_cooldown.start)
