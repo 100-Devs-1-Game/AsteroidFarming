@@ -18,7 +18,8 @@ enum BLOCKS {
 
 const SIDES = [Vector3i.LEFT, Vector3i.FORWARD, Vector3i.RIGHT, Vector3i.BACK]
 const TargetPlane = Plane.PLANE_XZ
-const PLANT_TIME = 6.0
+const PLANT_TIME = 12.0
+var DECAYTIME = 20.0
 const VIRUS_SPREAD_CHANCE = 10.0
 
 @onready var cam: Camera3D = $"camera pivot/cam"
@@ -33,7 +34,6 @@ const VIRUS_SPREAD_CHANCE = 10.0
 @onready var spaceship_cooldown: Timer = %"Spaceship Cooldown"
 @onready var shop: Shop = $CanvasLayer/ShopUI
 
-var DECAYTIME = 20.0
 var plants: Dictionary[Vector3i, float] = {}
 var active_tool: TOOLS = TOOLS.Bucket
 var spaceship_tween: Tween
