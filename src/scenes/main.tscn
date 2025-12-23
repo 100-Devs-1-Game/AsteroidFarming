@@ -62,7 +62,7 @@ transform = Transform3D(-0.5901971, 0, 0.80725914, 0, 1, 0, -0.80725914, 0, -0.5
 
 [node name="Spaceship Cooldown" type="Timer" parent="SpaceShipStuff"]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 30.0
 one_shot = true
 autostart = true
 

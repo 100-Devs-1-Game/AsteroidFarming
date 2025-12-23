@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b30mmydhqq4xf"]
 
 [ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_fs6yy"]
-[ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scenes/shop_ui.gd" id="1_oixfk"]
+[ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scripts/shop_ui.gd" id="1_oixfk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixfk"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.50980395)
