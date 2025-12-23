@@ -41,7 +41,10 @@ func on_seeds_updated(seeds: int):
 
 
 func on_harvest_sold(harvest: int):
-	label_sold.text = "Sold %dX" % harvest
+	if harvest == 0:
+		label_sold.text = ""
+	else:
+		label_sold.text = "Sold: %d" % harvest
 
 
 func _on_button_close_pressed() -> void:
