@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://vfaiwwpl7ne4" path="res://assets/art/collector_icon.png" id="8_laclm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b27c"]
-bg_color = Color(0.3372549, 0.3372549, 0.3372549, 0.6627451)
+bg_color = Color(0, 0, 0.25490198, 0.64705884)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0b27c"]
 font = ExtResource("2_p4b25")
