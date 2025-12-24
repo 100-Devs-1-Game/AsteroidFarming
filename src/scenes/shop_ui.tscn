@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b30mmydhqq4xf"]
+[gd_scene load_steps=11 format=3 uid="uid://b30mmydhqq4xf"]
 
 [ext_resource type="FontFile" uid="uid://rm8deh0nxdgw" path="res://fonts/space-madness-font/SpaceMadness-2R6v.ttf" id="1_fs6yy"]
 [ext_resource type="Script" uid="uid://cvc43ekqqd7a3" path="res://scripts/shop_ui.gd" id="1_oixfk"]
+[ext_resource type="AudioStream" uid="uid://bst62tbgdvbmr" path="res://external/sfx/buy.mp3" id="3_crtus"]
+[ext_resource type="AudioStream" uid="uid://bhuxa27cdypjk" path="res://external/sfx/cash.mp3" id="4_epbsd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixfk"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.50980395)
@@ -150,6 +152,16 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("1_fs6yy")
 theme_override_font_sizes/font_size = 24
 text = "CLOSE"
+
+[node name="AudioStreamPlayer Bought" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_crtus")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Sold" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_epbsd")
+max_polyphony = 3
+bus = &"Sfx"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button Buy" to="." method="buy" binds= [1]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button Close" to="." method="_on_button_close_pressed"]

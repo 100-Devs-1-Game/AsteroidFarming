@@ -33,9 +33,15 @@ const VIRUS_SPREAD_CHANCE = 10.0
 @onready var spaceship_docking: Marker3D = %"Spaceship Docking"
 @onready var spaceship_cooldown: Timer = %"Spaceship Cooldown"
 @onready var shop: Shop = $CanvasLayer/ShopUI
+@onready var audio_player_spaceship: AudioStreamPlayer3D = %"AudioStreamPlayer3D Spaceship"
 
 var plants: Dictionary[Vector3i, float] = {}
-var active_tool: TOOLS = TOOLS.Bucket
+var active_tool: TOOLS = TOOLS.Bucket:
+	set(t):
+		if active_tool == t: return
+		active_tool = t
+		%"AudioStreamPlayer Equip".play()
+		
 var spaceship_tween: Tween
 var taxes := 1
 
@@ -102,19 +108,23 @@ func _unhandled_input(_event: InputEvent) -> void:
 						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Dirt:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Soil)
+						%"AudioStreamPlayer Splash".play()
 					elif target_item == BLOCKS.Water:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
 						for side in SIDES:
 							if farmland.get_cell_item(tile_target + side) == BLOCKS.Soil:
 								farmland.set_cell_item(tile_target + side, BLOCKS.Dirt)
+						%"AudioStreamPlayer Suck".play()
 				TOOLS.Shovel:  # Shovel
 					if target_item == BLOCKS.Virus:
 						farmland.set_cell_item(tile_target, BLOCKS.Dirt)
+						%"AudioStreamPlayer Shovel".play()
 				TOOLS.Hoe: # Hoe
 					if target_item == BLOCKS.Soil and !plants.has(tile_target) and game_menu.seeds > 0:
 						farmland.set_cell_item(tile_target + Vector3i.UP, BLOCKS.WheatStart)
 						plants[tile_target] = 0.0
 						game_menu.seeds -= 1
+						%"AudioStreamPlayer Drop".play()
 				TOOLS.Collector: # Collector
 					if farmland.get_cell_item(tile_target + Vector3i.UP) == BLOCKS.WheatEnd:
 						farmland.set_cell_item(tile_target + Vector3i.UP, -1) 
@@ -123,7 +133,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 						game_menu.score += 1
 						game_menu.harvested += 1
 						game_menu.seeds += 1
-	
+						%"AudioStreamPlayer Cut".play()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("change_tool"):
@@ -173,12 +183,17 @@ func toggle_pause():
 func game_over():
 	get_tree().change_scene_to_packed(load("uid://btagksi1j8xfe"))
 
+
 func _on_spaceship_cooldown_timeout() -> void:
 	spaceship.position = spaceship_spawn.position
 	spaceship.show()
 	spaceship_tween= create_tween()
 	spaceship_tween.tween_property(spaceship, "position", spaceship_docking.position, 5.0).set_ease(Tween.EASE_OUT)
-	spaceship_tween.tween_callback(shop.open)
+	spaceship_tween.tween_callback(func():
+		shop.open()
+		audio_player_spaceship.stop()
+	)
+	audio_player_spaceship.play()
 
 
 func _on_shop_ui_closed() -> void:
@@ -186,3 +201,4 @@ func _on_shop_ui_closed() -> void:
 	spaceship_tween= create_tween()
 	spaceship_tween.tween_property(spaceship, "position", spaceship_despawn.position, 10.0).set_ease(Tween.EASE_IN)
 	spaceship_tween.tween_callback(spaceship_cooldown.start)
+	audio_player_spaceship.play()

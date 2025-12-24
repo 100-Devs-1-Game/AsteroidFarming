@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://70ym23bjjyoh"]
+[gd_scene load_steps=20 format=3 uid="uid://70ym23bjjyoh"]
 
 [ext_resource type="Script" uid="uid://drdcnkfl7pri7" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="MeshLibrary" uid="uid://dj2gwxmun3byt" path="res://assets/tiles/TestMeshLibrary.tres" id="2_o6xl0"]
@@ -8,7 +8,15 @@
 [ext_resource type="Environment" uid="uid://dol1vabg3lf3" path="res://assets/world_environment.tres" id="5_choun"]
 [ext_resource type="PackedScene" uid="uid://b30mmydhqq4xf" path="res://scenes/shop_ui.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://1hnrcibjxx0j" path="res://scenes/starfield.tscn" id="6_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://c1qflml2kt2jd" path="res://external/sfx/spaceship.mp3" id="7_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://g82bjbhulk4f" path="res://scenes/space_ship.tscn" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://dgimlww27nre3" path="res://external/sfx/cut.mp3" id="10_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://bnqb2544ugek6" path="res://external/sfx/drop.mp3" id="11_0ld40"]
+[ext_resource type="AudioStream" uid="uid://bba3ok3nb8kyr" path="res://external/sfx/equip.mp3" id="12_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://dim1nnvuynhhe" path="res://external/sfx/error.mp3" id="12_gqmmt"]
+[ext_resource type="AudioStream" uid="uid://ldd8w3mvhbn2" path="res://external/sfx/shovel.mp3" id="13_yc10j"]
+[ext_resource type="AudioStream" uid="uid://doinvjx40462j" path="res://external/sfx/splash.mp3" id="14_jscy8"]
+[ext_resource type="AudioStream" uid="uid://bju452pytce5a" path="res://external/sfx/suck.mp3" id="16_0ld40"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2mt5"]
 transparency = 1
@@ -48,6 +56,13 @@ unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6.918195, 2.1641774, 1.8044796)
 visible = false
 
+[node name="AudioStreamPlayer3D Spaceship" type="AudioStreamPlayer3D" parent="SpaceShipStuff/Spaceship"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.918195, -2.1641774, -1.8044796)
+stream = ExtResource("7_jbj1t")
+unit_size = 100.0
+doppler_tracking = 2
+
 [node name="Spaceship Spawn" type="Marker3D" parent="SpaceShipStuff"]
 unique_name_in_owner = true
 transform = Transform3D(-0.5901971, 0, 0.80725914, 0, 1, 0, -0.80725914, 0, -0.5901971, -349.2934, 26.358707, 1.8044796)
@@ -75,6 +90,51 @@ transform = Transform3D(0.70710677, -0.4055798, 0.579228, 0, 0.81915206, 0.57357
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="camera pivot/cam"]
 transform = Transform3D(0.7512641, -0.66000164, 0, 0.49735305, 0.56612515, 0.6573753, -0.43386874, -0.49386248, 0.7535634, 0, 0, 0)
 shadow_enabled = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer Cut" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("10_dp3eg")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Drop" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("11_0ld40")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Equip" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("12_dp3eg")
+volume_db = -10.214
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Error" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("12_gqmmt")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Shovel" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("13_yc10j")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Splash" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("14_jscy8")
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer Suck" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("16_0ld40")
+max_polyphony = 3
+bus = &"Sfx"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("5_choun")

@@ -25,8 +25,10 @@ func open():
 	EventManager.sell_harvest.emit()
 	EventManager.pay_taxes.emit()
 
+
 func buy(amount: int):
 	EventManager.bought_seeds.emit(amount)
+	$"AudioStreamPlayer Bought".play()
 
 
 func on_credits_updated(credits: int):
@@ -43,6 +45,7 @@ func on_harvest_sold(harvest: int):
 		label_sold.text = ""
 	else:
 		label_sold.text = "Sold: %d" % harvest
+		$"AudioStreamPlayer Sold".play()
 
 
 func on_taxes_updated(amount: int):
