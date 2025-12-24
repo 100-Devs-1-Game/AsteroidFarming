@@ -14,7 +14,7 @@ func _on_play_button_down() -> void:
 	#pass # Replace with function body.
 
 func _on_credits_button_down() -> void:
-	$VBoxContainer.hide()
+	%VBoxContainer.hide()
 	$credits.show()
 
 #func _on_exit_button_down() -> void:
@@ -25,5 +25,5 @@ func _on_exit_all_button_down() -> void:
 
 
 func _on_return_credits_button_down() -> void:
-	$VBoxContainer.show()
+	%VBoxContainer.show()
 	$credits.hide()

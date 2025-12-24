@@ -14,43 +14,40 @@ grow_vertical = 2
 theme = ExtResource("1_6gt8m")
 script = ExtResource("2_4jjr4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-anchor_left = 0.319444
-anchor_top = 0.330247
-anchor_right = 0.697917
-anchor_bottom = 0.975309
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_lmrkb")
+text = "Asteroid Farming"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Credits" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Credits"
 metadata/_edit_use_anchors_ = true
-
-[node name="Exit All" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-text = "Exit Game
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 187.0
-offset_top = 34.0
-offset_right = 990.0
-offset_bottom = 195.0
-theme = ExtResource("3_lmrkb")
-text = "Asteroid Farming"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="credits" type="Control" parent="."]
 visible = false
@@ -61,61 +58,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="credits"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -144.0
-offset_top = 180.0
-offset_right = 144.0
-offset_bottom = 229.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "The Team"
-horizontal_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="credits"]
+[node name="CenterContainer" type="CenterContainer" parent="credits"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 223.0
-offset_bottom = -162.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="credits/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="credits/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "The Team"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="credits/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "
-[ Lead ]
+text = "Lead Game Designer
+
 Mouse Potato Does Stuff
 
-[ Programming ]
+3D Artist
+
+CRYPTCRATE
+Dobert
+
+Composer
+
+Sadie Stone
+
+Programmers
+
 Codimon
 GalesyFailsy
-
- [ 3D MODELS ]
-Dobert"
+Mouse Potato Does Stuff"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="return_credits" type="Button" parent="credits"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -149.0
-offset_top = -82.0
-offset_right = 149.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="return_credits" type="Button" parent="credits/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "RETURN"
 
-[connection signal="button_down" from="VBoxContainer/Play" to="." method="_on_play_button_down"]
-[connection signal="button_down" from="VBoxContainer/Credits" to="." method="_on_credits_button_down"]
-[connection signal="button_down" from="VBoxContainer/Exit All" to="." method="_on_exit_all_button_down"]
-[connection signal="pressed" from="VBoxContainer/Exit All" to="." method="exit_game"]
-[connection signal="button_down" from="credits/return_credits" to="." method="_on_return_credits_button_down"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_button_down"]
+[connection signal="button_down" from="credits/CenterContainer/VBoxContainer/return_credits" to="." method="_on_return_credits_button_down"]
