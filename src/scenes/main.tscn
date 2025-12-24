@@ -42,9 +42,9 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 mesh = SubResource("BoxMesh_jc33t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Game Menu" parent="CanvasLayer" instance=ExtResource("3_tipki")]
-visible = false
 
 [node name="ShopUI" parent="CanvasLayer" instance=ExtResource("5_tipki")]
 visible = false
