@@ -1,17 +1,17 @@
-Credits for Asteroid Farming
-Lead Developer: Mouse Potato Does Stuff
-Assistant Lead Dev: Codimon
-TODO: Insert everyone else
+Lead Game Designer
+- Mouse Potato Does Stuff
 
-Audio:
-"Lost Frontier" Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons: By Attribution 4.0 License
-http://creativecommons.org/licenses/by/4.0/
+3D Artist
+- CRYPTCRATE
+- Dobert
 
-"wrong" Sound Effect by freesound_community https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47985"
-from
-https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47985
-Pixabay
+Composer
+- Sadie Stone
+
+Programmer
+- Codimon
+- GalesyFailsy
+- Mouse Potato Does Stuff
 
 Fonts:
 Space Game
