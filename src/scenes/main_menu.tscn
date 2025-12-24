@@ -28,21 +28,6 @@ layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Leaderboard" type="Button" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-text = "Leaderboard
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="Options" type="Button" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-text = "Options"
-metadata/_edit_use_anchors_ = true
-
 [node name="Credits" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -130,8 +115,6 @@ grow_vertical = 0
 text = "RETURN"
 
 [connection signal="button_down" from="VBoxContainer/Play" to="." method="_on_play_button_down"]
-[connection signal="button_down" from="VBoxContainer/Leaderboard" to="." method="_on_leaderboard_button_down"]
-[connection signal="button_down" from="VBoxContainer/Options" to="." method="_on_options_button_down"]
 [connection signal="button_down" from="VBoxContainer/Credits" to="." method="_on_credits_button_down"]
 [connection signal="button_down" from="VBoxContainer/Exit All" to="." method="_on_exit_all_button_down"]
 [connection signal="pressed" from="VBoxContainer/Exit All" to="." method="exit_game"]
