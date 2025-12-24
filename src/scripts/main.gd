@@ -136,8 +136,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 						%"AudioStreamPlayer Cut".play()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("change_tool"):
+	if Input.is_action_just_pressed("next_tool"):
 		active_tool = wrapi(active_tool + 1, 0, 4)
+	if Input.is_action_just_pressed("prev_tool"):
+		active_tool = wrapi(active_tool - 1, 0, 4)
 	
 	var cleanup = []
 	for p in plants.keys():
